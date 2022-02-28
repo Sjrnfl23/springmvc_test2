@@ -5,7 +5,9 @@ public class Member {
 	private String ifmmSeq = "";
 	private String ifmmId = "";
 	private String ifmmName= "";
-//------------
+	private Integer ifmmDelNy;
+
+	//------------
 	public String getIfmmSeq() {
 		return ifmmSeq;
 	}
@@ -23,6 +25,12 @@ public class Member {
 	}
 	public void setIfmmName(String ifmmName) {
 		this.ifmmName = ifmmName;
+	}
+	public Integer getIfmmDelNy() {
+		return ifmmDelNy;
+	}
+	public void setIfmmDelNy(Integer ifmmDelNy) {
+		this.ifmmDelNy = ifmmDelNy;
 	}
 
 }
