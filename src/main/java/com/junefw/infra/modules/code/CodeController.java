@@ -23,6 +23,25 @@ public class CodeController {
 		
 	}
 	
+	@RequestMapping(value = "/code/codeGroupForm")
+
+	public String codeGroupForm(Model model) throws Exception {
+		
+		//입력이 되어야 함
+		
+		return "code/codeGroupForm";
+	}
+	
+	@RequestMapping(value = "/code/codeGroupInst")
+
+	public String codeGroupInst(Code dto) throws Exception{
+		
+		service.insert(dto);
+		
+		return "";
+	}
+	
+	
 	
 	
 }

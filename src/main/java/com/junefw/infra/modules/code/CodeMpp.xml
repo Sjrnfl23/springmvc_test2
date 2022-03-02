@@ -17,6 +17,20 @@
 		AND ifcgDelNy = 0
 	</select>
 	
+	<insert id="insert">
+	INSERT INTO(
+		ifcgName
+		,ifcgDelNy
+	) VALUES(
+	
+		#{ifcgName}
+		,0
+	
+	)
+	
+	
+	</insert>
+	
 
 
 </mapper>

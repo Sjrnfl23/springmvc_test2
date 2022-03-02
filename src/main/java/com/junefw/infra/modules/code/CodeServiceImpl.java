@@ -16,5 +16,10 @@ public class CodeServiceImpl implements CodeService{
 		return dao.selectList(); 
 	}
 	
+	public int insert(Code dto) throws Exception{
+		return dao.insert();
+	}
+
+	
 	
 }
