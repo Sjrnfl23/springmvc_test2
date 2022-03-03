@@ -21,10 +21,14 @@ public class CodeDao {
 		return sqlSession.selectList(namespace + ".selectList", "");
 	}
 
-	public int insert() {
-		return sqlSession.insert(namespace + ".insert", "");
+	public int insert(Code dto) {
+		
+		return sqlSession.insert(namespace + ".insert", dto);
+		
 	}
-	
+	public Code selectOne(CodeVo vo) throws Exception{
+		return sqlSession.selectOne(namespace+".selectOne",vo);
+	}
 	
 
 }

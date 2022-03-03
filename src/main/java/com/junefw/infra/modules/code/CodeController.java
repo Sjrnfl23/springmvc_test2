@@ -17,6 +17,7 @@ public class CodeController {
 
 	public String codeGroupList(Model model) throws Exception {
 		List<Code> list= service.selectList();
+		
 		model.addAttribute("list", list);
 		
 		return "code/codeGroupList";	
@@ -24,21 +25,28 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/code/codeGroupForm")
-
-	public String codeGroupForm(Model model) throws Exception {
-		
-		//입력이 되어야 함
+	public String codeGroupForm() throws Exception {
 		
 		return "code/codeGroupForm";
 	}
 	
+	
 	@RequestMapping(value = "/code/codeGroupInst")
-
 	public String codeGroupInst(Code dto) throws Exception{
 		
 		service.insert(dto);
 		
 		return "";
+	}
+	@RequestMapping(value = "/code/codeGroupView")
+	public String codeGroupView(CodeVo vo,Model model) throws Exception{
+		Code rt=service.selectOne(vo);
+		
+		model.addAttribute(rt);
+		
+		
+		
+		return "code/codeGroupView";
 	}
 	
 	
