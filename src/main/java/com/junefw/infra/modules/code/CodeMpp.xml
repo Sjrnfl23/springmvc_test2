@@ -16,17 +16,7 @@
 	WHERE 1=1
 		AND ifcgDelNy = 0
 	</select>
-	<select id="selectOne" resultMap="resultMapObj">
-		select
-			a.ifcgSeq
-		    , a.ifcgName
-		    , a.ifcgDelNy
-		from
-			infrCodeGroup a
-		where 1=1
-			
-			and ifcgSeq = #{ifcgSeq}
-	</select>
+	
 	
 	<insert id="insert">
 	INSERT INTO infrCodeGroup(
@@ -40,7 +30,16 @@
 	
 	
 	</insert>
-		
+	
+		<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.ifcgSeq
+		    , a.ifcgName
+		    , a.ifcgDelNy
+		from
+			nct.infrCodeGroup a
+		where a.ifcgSeq = #{ifcgSeq}
+	</select>
 
 
 </mapper>

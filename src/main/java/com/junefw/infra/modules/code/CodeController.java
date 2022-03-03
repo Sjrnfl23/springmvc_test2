@@ -38,12 +38,13 @@ public class CodeController {
 		
 		return "";
 	}
+	
 	@RequestMapping(value = "/code/codeGroupView")
 	public String codeGroupView(CodeVo vo,Model model) throws Exception{
 		Code rt=service.selectOne(vo);
 		
-		model.addAttribute(rt);
-		
+		model.addAttribute("item",rt);
+		System.out.println("안녕");
 		
 		
 		return "code/codeGroupView";

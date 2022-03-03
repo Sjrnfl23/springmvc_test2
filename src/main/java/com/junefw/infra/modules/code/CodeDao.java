@@ -22,13 +22,14 @@ public class CodeDao {
 	}
 
 	public int insert(Code dto) {
-		
+
 		return sqlSession.insert(namespace + ".insert", dto);
+
+	}
+
+	public Code selectOne(CodeVo vo) throws Exception {
 		
+		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
-	public Code selectOne(CodeVo vo) throws Exception{
-		return sqlSession.selectOne(namespace+".selectOne",vo);
-	}
-	
 
 }
