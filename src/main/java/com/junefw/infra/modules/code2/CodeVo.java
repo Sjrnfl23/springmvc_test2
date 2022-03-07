@@ -1,4 +1,4 @@
-package com.junefw.infra.modules.code;
+package com.junefw.infra.modules.code2;
 
 public class CodeVo {
 	private String ifcgSeq;
