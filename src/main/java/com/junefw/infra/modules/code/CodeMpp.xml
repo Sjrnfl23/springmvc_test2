@@ -16,7 +16,21 @@
 	WHERE 1=1
 		AND ifcgDelNy = 0
 	</select>
+	<select id="selectList2" resultMap="resultMapObj">
+	SELECT 
+		a.ifcdSeq
+		,a.ifcdName
+		,a.ifcdOrder
+		,a.ifcdDelNy
+		,a.ifcgseq
+	FROM 
+		nct.infrCode a
+	WHERE 1=1
+		AND ifcdDelNy = 0
 	
+	</select>
+	
+
 	
 	<insert id="insert">
 	INSERT INTO infrCodeGroup(
@@ -25,6 +39,24 @@
 	) VALUES(
 		#{ifcgName}
 		,0
+	
+	)
+	
+	
+	</insert>
+	
+		<insert id="insert2">
+	INSERT INTO infrCode(
+		ifcdName
+		,ifcdDelNy
+		,ifcgSeq
+		,ifcdOrder
+		
+	) VALUES(
+		#{ifcdName}
+		,0
+		,#{ifcgSeq}
+		,#{ifcdOrder}
 	
 	)
 	
@@ -41,6 +73,17 @@
 		where a.ifcgSeq = #{ifcgSeq}
 	</select>
 	
+	<select id="selectOne2" resultMap="resultMapObj">
+		select
+			a.ifcdSeq
+		    , a.ifcdName
+		    , a.ifcdDelNy
+		    
+		from
+			nct.infrCode a
+		where a.ifcdSeq = #{ifcdSeq}
+	</select>
+	
 	<update id="update">
 	update 
 		infrcodeGroup a
@@ -48,6 +91,15 @@
 		ifcgName=#{ifcgName}
 	where 
 		a.ifcgSeq=#{ifcgSeq}
+	</update>
+	
+	<update id="update2">
+	update 
+		infrcode a
+	set 
+		ifcdName=#{ifcdName}
+	where 
+		a.ifcdSeq=#{ifcdSeq}
 	</update>
 
 

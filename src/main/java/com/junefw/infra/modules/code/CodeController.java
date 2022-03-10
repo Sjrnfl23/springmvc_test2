@@ -69,7 +69,64 @@ public class CodeController {
 		return "";
 	}
 	
+	// ---------------------------
+	// code
+	
+	@RequestMapping(value = "/code/codeList")
+
+	public String codeList(Model model) throws Exception {
+		List<Code> list= service.selectList2();
+		
+		model.addAttribute("list", list);
+		
+		return "code/codeList";	
+		
+	}
+	@RequestMapping(value = "/code/codeForm")
+	public String codeForm(Model model) throws Exception {
+		
+		List<Code> list= service.selectList();
+		model.addAttribute("list",list);
+		return "code/codeForm";
+	}
 	
 	
+	@RequestMapping(value = "/code/codeInst")
+	public String codeInst(Code dto) throws Exception{
+		
+		service.insert2(dto);
+		
+		return "";
+	}
+	
+	@RequestMapping(value = "/code/codeView")
+	public String codeView(CodeVo vo,Model model) throws Exception{
+		Code rt=service.selectOne2(vo);
+		
+		model.addAttribute("item",rt);
+	
+		
+		
+		return "code/codeView";
+	}
+	
+	@RequestMapping(value = "/code/codeEdit")
+	public String codeEdit(Model model,CodeVo vo) throws Exception {
+		Code rt=service.selectOne2(vo);
+		
+		model.addAttribute("item",rt);
+		
+		return "code/codeEdit";
+	}
+	
+	@RequestMapping(value = "/code/codeUpdate")
+	public String codeUpdate(Code dto) throws Exception{
+		
+		
+		service.update2(dto);
+		
+		
+		return "";
+	}
 	
 }

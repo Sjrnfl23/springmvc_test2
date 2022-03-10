@@ -31,14 +31,42 @@ public class MemberController {
 	@RequestMapping(value = "/member/memberInst")
 	public String memberInst(Model model, Member dto) throws Exception {
 		
-		System.out.println("dto.getIfmmId(): " + dto.getIfmmId());
-		System.out.println("dto.getIfmmName(): " + dto.getIfmmName());
-
 		// 입력을 작동시킨다.
 		int result = service.insert(dto);
 		
 		System.out.println("result: " + result);
 
-		return "";
+		return "redirect:member/memberList";
 	}
+	
+	@RequestMapping(value = "/member/memberView")
+	public String memberView(Model model,MemberVo vo) throws Exception {
+		
+		Member rt=service.selectOne(vo);
+		model.addAttribute("item",rt);
+		
+		return "member/memberView";
+	}
+	
+	@RequestMapping(value = "/member/memberEdit")
+	public String memberEdit(Model model,MemberVo vo) throws Exception {
+		
+		Member rt=service.selectOne(vo);
+		model.addAttribute("item",rt);
+		
+		
+		
+		return "member/memberEdit";
+	}
+
+	@RequestMapping(value = "/member/memberUpdate")
+	public String memberUpdate(Member dto) throws Exception {
+		
+		service.update(dto);
+		
+		
+		
+		return "redirect:/member/memberList";
+	}
+	
 }

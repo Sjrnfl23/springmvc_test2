@@ -28,11 +28,33 @@ public class CodeDao {
 	}
 
 	public Code selectOne(CodeVo vo) throws Exception {
-		
+
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
+
 	public int update(Code dto) throws Exception {
-		return sqlSession.update(namespace+".update",dto);
+		return sqlSession.update(namespace + ".update", dto);
+	}
+	
+	//-----------------------------------------------------------
+	
+	public List<Code> selectList2() {
+		return sqlSession.selectList(namespace + ".selectList2", "");
+	}
+
+	public int insert2(Code dto) {
+
+		return sqlSession.insert(namespace + ".insert2", dto);
+
+	}
+
+	public Code selectOne2(CodeVo vo) throws Exception {
+
+		return sqlSession.selectOne(namespace + ".selectOne2", vo);
+	}
+
+	public int update2(Code dto) throws Exception {
+		return sqlSession.update(namespace + ".update2", dto);
 	}
 
 }

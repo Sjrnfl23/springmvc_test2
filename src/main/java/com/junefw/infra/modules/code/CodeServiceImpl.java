@@ -26,8 +26,21 @@ public class CodeServiceImpl implements CodeService{
 	public int update(Code dto) throws Exception{
 		return dao.update(dto);
 	}
-
 	
+	@Override
+	public List<Code> selectList2() throws Exception {
+		return dao.selectList2(); 
+	}
 	
+	@Override
+	public int insert2(Code dto) throws Exception{
+		return dao.insert2(dto);
+	}
+	public Code selectOne2(CodeVo vo) throws Exception{
+		return dao.selectOne2(vo);
+	}
+	public int update2(Code dto) throws Exception{
+		return dao.update2(dto);
+	}
 	
 }

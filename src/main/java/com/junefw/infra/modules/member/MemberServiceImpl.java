@@ -18,5 +18,10 @@ public class MemberServiceImpl implements MemberService{
 	public int insert(Member dto) throws Exception{
 		return dao.insert(dto);
 	}
-	
+	public Member selectOne(MemberVo vo) throws Exception{
+		return dao.selectOne(vo);
+	}
+	public int update(Member dto) throws Exception{
+		return dao.update(dto);
+	}
 }
