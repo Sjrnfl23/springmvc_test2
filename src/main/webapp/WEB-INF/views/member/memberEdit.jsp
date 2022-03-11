@@ -33,11 +33,12 @@ th, td {
 <h1>회원수정</h1>
 <hr>
 <br>
-<form action="/infra/member/memberUpdate" method="post" id="form" name="form">
+<form action="/infra/member/memberUpdate" method="post">
 
-<input type ="hidden" name="ifmmSeq" value="<c:out value="${ifmm.ifmmSeq}"/>">
+
 
 <table border=1 class="table" style="width: 900px; " class="text-center">
+
 <colgroup>
 <col style="background-color:#e9ecef;">
 <col>
@@ -48,12 +49,12 @@ th, td {
 		<tr>
 			<td>이름</td>
 			<td>
-				<input type="text" id="ifmmName" name="ifmmName" size="10" value="<c:out value="${item.ifmmName}"/>">
+				<input type="text" name="ifmmName" value="<c:out value="${item.ifmmName}"/>">
 				</td>
 			<td>아이디</td>
 			<td>
 				
-				<input type ="text" name="ifmmId" id="ifmmId" value="<c:out value="${item.ifmmId}"/>">
+				<input type ="text" name="ifmmId" value="<c:out value="${item.ifmmId}"/>">
 
 			
 				
@@ -135,7 +136,7 @@ th, td {
 		</tr>
 		<tr>
 			<td><label for="email" class="form-label">이메일</label></td>
-			<td><input type="email" id="email" name="email" class="form-control" value="ksdkiopw2@gmail.com"></td>
+			<td><input type="email" id="email" name="ifmeEmailFull" class="form-control" value="ksdkiopw2@gmail.com"></td>
 			<td>이메일 마케팅 수신 동의</td>
 			<td><input type="radio" name="emailagree" class="btn-check" id="agree2" value="동의" checked>
 			<label class="btn btn-outline-success" for="agree2">동의</label>
@@ -336,6 +337,8 @@ th, td {
 
  
  <a href="memberList"><input type="button" class="btn btn-primary" value="목록"></a>
+ 
+ <input type ="hidden" name="ifmmSeq" value="<c:out value="${item.ifmmSeq}"/>">
  
   <input type="submit" class="btn btn-warning" value="수정">
   

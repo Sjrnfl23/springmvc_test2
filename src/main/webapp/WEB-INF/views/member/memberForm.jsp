@@ -56,7 +56,7 @@ th,td {
 				</td>
 			<td>아이디</td>
 			<td>
-				<input type="text" id="id" name="id" size="12" placeholder="아이디" >
+				<input type="text" id="ifmm" name="ifmmId" size="12" placeholder="아이디" >
 					
 			<!-- 	<div class="col-auto">
     <span id="idexplain" class="form-text">
@@ -105,10 +105,10 @@ th,td {
 </td>
 			<td >성별</td>
 			<td>
-				<input type="radio" class="btn-check" name="gender" id="man" value="여성" checked>
+				<input type="radio" class="btn-check" name="ifmmGenderCd" id="man" value="5" checked>
 			
 			<label class="btn btn-outline-success" for="man">남성</label>
-				<input type="radio" name="gender" class="btn-check" id="woman" value="여성">
+				<input type="radio" name="ifmmGenderCd" class="btn-check" id="woman" value="6">
 				<label class="btn btn-outline-danger" for="woman">여성</label>
 			
 			</td>
@@ -171,11 +171,11 @@ th,td {
 		</tr>
 		<tr>
 			<td>
-  <label for="exampleFormControlInput1" class="form-label">
+  <label for="ifmeEmailFull" class="form-label">
   
   이메일<img src="../../images/email_48.png"></label></td>
 			<td>
-  <input type="email"  id="exampleFormControlInput1"  size="20" placeholder="name@example.com">
+  <input type="email"  id="ifmeEmailFull" name="ifmeEmailFull" size="20" placeholder="name@example.com">
   
   	<input type="button" id="emailcheck" name="emailcheck" class="btn btn-primary" value="중복확인" data-bs-toggle="modal" data-bs-target="#email">
 			<div class="modal fade" id="email" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

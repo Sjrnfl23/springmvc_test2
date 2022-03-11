@@ -31,7 +31,8 @@ th, td {
 <h1>회원정보</h1>
 
 <hr>
-
+ <form method="post" action="memberDelete">
+  <input type ="hidden" name="ifmmSeq" value="<c:out value="${item.ifmmSeq}"/>">
 	<table class="table"  style="width: 800px;"  border=1 >
 	
 	<colgroup>
@@ -218,11 +219,16 @@ th, td {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <a href="memberList"><button type="button" class="btn btn-danger">삭제</button></a>
+        
+       
+        <input type="submit" class="btn btn-danger" value="삭제">
+     
       </div>
     </div>
   </div>
 </div>
+
+   </form>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> 
 
 </body>

@@ -24,12 +24,14 @@
 			insert into infrMember(
 			 ifmmId
 			,ifmmName
+			,ifmmGenderCd
 			,ifmmDelNy
 			
-		) value (
-			ifmmId
+		) values (
+			
 			#{ifmmId}
 			,#{ifmmName}
+			,#{ifmmGenderCd}
 			,0
 		)
 				
@@ -75,12 +77,22 @@
 	update 
 		infrmember a
 	set 
-		ifmmName = #{ifmmName}, 
-		ifmmId = #{ifmmId}
+		a.ifmmName = #{ifmmName}, 
+		a.ifmmId = #{ifmmId}
 	where 
 		a.ifmmSeq= #{ifmmSeq}
+		
 	
 	</update>
+	<delete id="delete">
+	delete 
+		from infrmember a
+	where
+		ifmmSeq=#{ifmmSeq}
+	
+	
+	
+	</delete>
 	
 	
 

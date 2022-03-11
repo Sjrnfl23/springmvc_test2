@@ -23,6 +23,7 @@ public class MemberDao {
 	}
 
 	public int insert(Member dto) {
+		System.out.println(dto.getIfmeEmailFull());
 		return sqlSession.insert(namespace + ".insert", dto);
 	}
 
@@ -30,7 +31,11 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
 	public int update(Member dto) {
+		
 		return sqlSession.update(namespace+".update",dto);
+	}
+	public int delete(MemberVo vo) {
+		return sqlSession.delete(namespace+".delete",vo);
 	}
 
 }

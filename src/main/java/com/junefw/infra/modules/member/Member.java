@@ -18,9 +18,16 @@ public class Member {
 	private String ifnaName;
 	private String ifjqAnswer;
 	private String ifjqQuestionName;
+	private String ifmmGenderCd="";
 	
 	
 	
+	public String getIfmmGenderCd() {
+		return ifmmGenderCd;
+	}
+	public void setIfmmGenderCd(String ifmmGenderCd) {
+		this.ifmmGenderCd = ifmmGenderCd;
+	}
 	public String getIfjqQuestionName() {
 		return ifjqQuestionName;
 	}

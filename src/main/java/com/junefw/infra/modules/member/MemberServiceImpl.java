@@ -24,4 +24,7 @@ public class MemberServiceImpl implements MemberService{
 	public int update(Member dto) throws Exception{
 		return dao.update(dto);
 	}
+	public int delete(MemberVo vo) throws Exception{
+		return dao.delete(vo);
+	}
 }

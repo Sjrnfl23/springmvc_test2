@@ -68,5 +68,14 @@ public class MemberController {
 		
 		return "redirect:/member/memberList";
 	}
+	@RequestMapping(value = "/member/memberDelete")
+	public String memberDelete(MemberVo vo) throws Exception {
+		
+		service.delete(vo);
+		
+		
+		
+		return "redirect:/member/memberList";
+	}
 	
 }

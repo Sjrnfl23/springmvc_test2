@@ -14,8 +14,14 @@
 	FROM 
 		nct.infrCodeGroup a
 	WHERE 1=1
-		AND ifcgDelNy = 0
+		<choose>
+		<when test="shIfcgDelNy == 1">AND ifcgDelNy = 1</when>
+		<when test="shIfcgDelNy == 0">AND ifcgDelNy = 0</when>
+		</choose>
+		  <if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%') </if>
+		
 	</select>
+	
 	<select id="selectList2" resultMap="resultMapObj">
 	SELECT 
 		a.ifcdSeq
@@ -27,9 +33,9 @@
 		nct.infrCode a
 	WHERE 1=1
 		AND ifcdDelNy = 0
-	
+		<if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> and ifcgSeq = #{shIfcgSeq} </if>
+
 	</select>
-	
 
 	
 	<insert id="insert">
