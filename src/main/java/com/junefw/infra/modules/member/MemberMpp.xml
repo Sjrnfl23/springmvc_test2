@@ -18,7 +18,7 @@
 				infrMember a
 			left join infrmemberphone b on b.ifmmseq=a.ifmmseq and b.ifmpDefaultNy = 1
 			left join infrmemberEmail c on c.ifmmseq=a.ifmmseq and c.ifmeDefaultNy = 1
-			 
+			 limit #{startRnumForMysql},#{rowNumToShow}
 	</select>
 	<insert id="insert">
 			insert into infrMember(

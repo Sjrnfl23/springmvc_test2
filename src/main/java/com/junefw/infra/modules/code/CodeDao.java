@@ -16,7 +16,12 @@ public class CodeDao {
 	private SqlSession sqlSession;
 
 	private static String namespace = "com.junefw.infra.modules.code.CodeMpp";
+	
+	public int selectOneCount(CodeVo vo) throws Exception {
 
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+	}
+	
 	public List<Code> selectList(CodeVo vo) {
 		return sqlSession.selectList(namespace + ".selectList",vo);
 	}
@@ -57,5 +62,6 @@ public class CodeDao {
 	public int update2(Code dto) throws Exception {
 		return sqlSession.update(namespace + ".update2", dto);
 	}
+	
 
 }

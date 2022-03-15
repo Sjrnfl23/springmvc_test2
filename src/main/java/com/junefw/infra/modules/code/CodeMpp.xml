@@ -6,24 +6,41 @@
 
 	<resultMap id="resultMapObj" type="com.junefw.infra.modules.code.Code"></resultMap>
 
-	<select id="selectList" resultMap="resultMapObj">
-	SELECT 
-		a.ifcgSeq
-		,a.ifcgName
-		,a.ifcgDelNy
-	FROM 
+	<sql id="selectCommon">
+		FROM 
 		nct.infrCodeGroup a
 	WHERE 1=1
 		<choose>
-		<when test="shIfcgDelNy == 1">AND ifcgDelNy = 1</when>
-		<when test="shIfcgDelNy == 0">AND ifcgDelNy = 0</when>
+			<when test="shIfcgDelNy == 1">AND a.ifcgDelNy = 1</when>
+			<when test="shIfcgDelNy == 0">AND a.ifcgDelNy = 0</when>
 		</choose>
-		  <if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%') </if>
-		
+		<if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%') </if>
+		<choose>
+			<when test="shOption == 1">AND a.ifcgName LIKE concat('%',#{shValue},'%')</when>
+			<when test="shOption == 2">AND a.ifcgNameEng LIKE concat('%',#{shValue},'%')</when>
+		</choose>
+	</sql>
+
+
+	<select id="selectOneCount" resultType="Integer">
+		SELECT 
+		count(*)
+		<include refid="selectCommon" />
 	</select>
-	
+
+
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT 
+		a.ifcgSeq
+		,a.ifcgName
+		,a.ifcgNameEng
+		,a.ifcgDelNy
+		<include refid="selectCommon" />
+		limit #{startRnumForMysql},#{rowNumToShow}
+	</select>
+
 	<select id="selectList2" resultMap="resultMapObj">
-	SELECT 
+		SELECT 
 		a.ifcdSeq
 		,a.ifcdName
 		,a.ifcdOrder
@@ -37,7 +54,7 @@
 
 	</select>
 
-	
+
 	<insert id="insert">
 	INSERT INTO infrCodeGroup(
 		ifcgName
@@ -50,8 +67,8 @@
 	
 	
 	</insert>
-	
-		<insert id="insert2">
+
+	<insert id="insert2">
 	INSERT INTO infrCode(
 		ifcdName
 		,ifcdDelNy
@@ -68,8 +85,8 @@
 	
 	
 	</insert>
-	
-		<select id="selectOne" resultMap="resultMapObj">
+
+	<select id="selectOne" resultMap="resultMapObj">
 		select
 			a.ifcgSeq
 		    , a.ifcgName
@@ -78,7 +95,7 @@
 			nct.infrCodeGroup a
 		where a.ifcgSeq = #{ifcgSeq}
 	</select>
-	
+
 	<select id="selectOne2" resultMap="resultMapObj">
 		select
 			a.ifcdSeq
@@ -89,7 +106,7 @@
 			nct.infrCode a
 		where a.ifcdSeq = #{ifcdSeq}
 	</select>
-	
+
 	<update id="update">
 	update 
 		infrcodeGroup a
@@ -98,7 +115,7 @@
 	where 
 		a.ifcgSeq=#{ifcgSeq}
 	</update>
-	
+
 	<update id="update2">
 	update 
 		infrcode a

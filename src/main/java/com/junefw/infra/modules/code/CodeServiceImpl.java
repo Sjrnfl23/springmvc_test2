@@ -11,6 +11,12 @@ public class CodeServiceImpl implements CodeService{
 	@Autowired
 	CodeDao dao;
 	
+	
+	@Override
+	public int selectOneCount(CodeVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectOneCount(vo);
+	}
 	@Override
 	public List<Code> selectList(CodeVo vo) throws Exception {
 		return dao.selectList(vo); 
@@ -42,5 +48,7 @@ public class CodeServiceImpl implements CodeService{
 	public int update2(Code dto) throws Exception{
 		return dao.update2(dto);
 	}
+
+	
 	
 }

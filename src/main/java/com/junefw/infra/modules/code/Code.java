@@ -10,7 +10,15 @@ public class Code {
 	private String ifcdName;
 	private Integer ifcdOrder;
 	private Integer ifcdDelNy;
+	private String ifcgNameEng;
 	
+	
+	public String getIfcgNameEng() {
+		return ifcgNameEng;
+	}
+	public void setIfcgNameEng(String ifcgNameEng) {
+		this.ifcgNameEng = ifcgNameEng;
+	}
 	public String getIfcdSeq() {
 		return ifcdSeq;
 	}
