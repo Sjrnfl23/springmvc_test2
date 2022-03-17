@@ -18,7 +18,7 @@ public class CodeController {
   
 	@RequestMapping(value = "/code/codeGroupList")
 
-	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+	public String codeGroupList(@ModelAttribute("vo")CodeVo vo, Model model) throws Exception {
 	
 		int count=service.selectOneCount(vo);
 		
@@ -86,17 +86,23 @@ public class CodeController {
 	// code
 	
 	@RequestMapping(value = "/code/codeList")
-
-	public String codeList(Model model,CodeVo vo) throws Exception {
+	public String codeList(Model model,@ModelAttribute("vo")CodeVo vo) throws Exception {
 	
+		int count=service.selectOneCount2(vo);
+		vo.setParamsPaging(count);
+		
+		if(count!=0) {
+			List<Code> listCodeGroup=service.selectList(vo);
+			model.addAttribute("listCodeGroup",listCodeGroup);
+			
+			List<Code> list= service.selectList2(vo);
+			
+			model.addAttribute("list", list);
+			
+		
+		}
 		
 		
-		List<Code> list= service.selectList2(vo);
-		
-		model.addAttribute("list", list);
-		
-		List<Code> listCodeGroup=service.selectList(vo);
-		model.addAttribute("listCodeGroup",listCodeGroup);
 		return "code/codeList";	
 		
 	}

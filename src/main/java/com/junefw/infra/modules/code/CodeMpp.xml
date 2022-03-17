@@ -27,7 +27,7 @@
 		count(*)
 		<include refid="selectCommon" />
 	</select>
-
+	
 
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT 
@@ -39,6 +39,13 @@
 		limit #{startRnumForMysql},#{rowNumToShow}
 	</select>
 
+
+<select id="selectOneCount2" resultType="Integer">
+		SELECT 
+		count(*)
+		from infrCode
+	</select>
+	
 	<select id="selectList2" resultMap="resultMapObj">
 		SELECT 
 		a.ifcdSeq
@@ -50,8 +57,10 @@
 		nct.infrCode a
 	WHERE 1=1
 		AND ifcdDelNy = 0
+		
 		<if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> and ifcgSeq = #{shIfcgSeq} </if>
-
+		
+		limit #{startRnumForMysql},#{rowNumToShow}
 	</select>
 
 

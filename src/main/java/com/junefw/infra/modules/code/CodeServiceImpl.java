@@ -48,6 +48,11 @@ public class CodeServiceImpl implements CodeService{
 	public int update2(Code dto) throws Exception{
 		return dao.update2(dto);
 	}
+	@Override
+	public int selectOneCount2(CodeVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectOneCount2(vo);
+	}
 
 	
 	

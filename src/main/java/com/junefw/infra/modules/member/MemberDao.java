@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.junefw.infra.modules.code.Code;
+import com.junefw.infra.modules.code.CodeVo;
 
 @Repository
 public class MemberDao {
@@ -18,15 +19,15 @@ public class MemberDao {
 
 	private static String namespace = "com.junefw.infra.modules.member.MemberMpp";
 
-	public List<Member> selectList() {
-		return sqlSession.selectList(namespace + ".selectList", "");
+	public List<Member> selectList(MemberVo vo) {
+		return sqlSession.selectList(namespace + ".selectList",vo );
 	}
 
 	public int insert(Member dto) {
-		System.out.println(dto.getIfmeEmailFull());
+		
 		return sqlSession.insert(namespace + ".insert", dto);
 	}
-
+	
 	public Member selectOne(MemberVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
@@ -36,6 +37,9 @@ public class MemberDao {
 	}
 	public int delete(MemberVo vo) {
 		return sqlSession.delete(namespace+".delete",vo);
+	}
+	public int selectOneCount(MemberVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 
 }

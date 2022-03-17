@@ -22,6 +22,7 @@
 	crossorigin="anonymous">
 
 <style type="text/css">
+
 label {
 	margin-bottom: 15px;
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.junefw.infra.modules.code.CodeVo;
+
 @Service
 public class MemberServiceImpl implements MemberService{
 
@@ -12,12 +14,13 @@ public class MemberServiceImpl implements MemberService{
 	MemberDao dao;
 	
 	@Override
-	public List<Member> selectList() throws Exception {
-		return dao.selectList(); 
+	public List<Member> selectList(MemberVo vo) throws Exception {
+		return dao.selectList(vo); 
 	}
 	public int insert(Member dto) throws Exception{
 		return dao.insert(dto);
 	}
+	
 	public Member selectOne(MemberVo vo) throws Exception{
 		return dao.selectOne(vo);
 	}
@@ -27,4 +30,11 @@ public class MemberServiceImpl implements MemberService{
 	public int delete(MemberVo vo) throws Exception{
 		return dao.delete(vo);
 	}
+	@Override
+	public int selectOneCount(MemberVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectOneCount(vo);
+	}
+	
+	
 }

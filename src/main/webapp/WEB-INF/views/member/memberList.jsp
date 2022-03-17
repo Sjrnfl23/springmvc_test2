@@ -91,6 +91,7 @@ th, td {
 			<td><c:out value="${item.ifmmPhone}"/></td>
 			<td><c:out value="${item.ifmmGender}"/></td>
 			<td><c:out value="${item.ifmeEmailFull}"/></td>
+		
 		</tr>
 		
 		
@@ -99,25 +100,47 @@ th, td {
 		</c:otherwise>
 		</c:choose>	 
 	</table>
+	
 	<form action="./memberForm" method="post" id="form" name="form">
 	<br>
 	<input class="btn btn-primary" style="margin:auto; display:block" type="submit" value="등록">
 	</form>
 	
 	<br>
-	<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
+	
+	
+	startPage:<c:out value="${vo.startPage}"/> 
+	<br>thisPage:<c:out value="${vo.thisPage}"/>
+	<br> EndPage: <c:out value="${vo.endPage}"/>
+	<br>totalRows: <c:out value="${vo.totalRows}"/>
+	
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  
+   <c:if test="${vo.startPage gt vo.pageNumToShow}">
+                <li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${vo.startPage - 1}">Previous</a></li>
+</c:if>
+
+<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+	<c:choose>
+		<c:when test="${i.index eq vo.thisPage}">
+                <li class="page-item active"><a class="page-link" href="/infra/member/memberList?thisPage=${i.index}">${i.index}</a></li>
+		</c:when>
+		<c:otherwise>             
+                <li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${i.index}">${i.index}</a></li>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>   
+  
+<c:if test="${vo.endPage ne vo.totalPages}">                
+                <li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${vo.endPage + 1}">Next</a></li>
+</c:if>
+  
   </ul>
+  
 </nav>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

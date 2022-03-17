@@ -62,6 +62,8 @@ public class CodeDao {
 	public int update2(Code dto) throws Exception {
 		return sqlSession.update(namespace + ".update2", dto);
 	}
-	
+	public int selectOneCount2(CodeVo vo) throws Exception{
+		return sqlSession.selectOne(namespace+".selectOneCount2",vo);
+	}
 
 }
