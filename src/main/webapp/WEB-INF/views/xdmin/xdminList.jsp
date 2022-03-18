@@ -217,8 +217,8 @@ text-decoration:none;
 						class="form-check-input"></th>
 					<!-- td크기 조절? -->
 					<th>#</th>
-					<th>Firstname</th>
-					<th>Lastname</th>
+					<th>Name</th>
+					
 					<th>Age</th>
 					<th>City</th>
 					<th>Country</th>
@@ -231,7 +231,7 @@ text-decoration:none;
 				<td><input type="checkbox" id="" name=""
 					class="form-check-input"></td>
 				<td>1</td>
-				<td>Anna</td>
+				
 				<td>Pitt</td>
 				<td>35</td>
 				<td>New York</td>

@@ -2,7 +2,8 @@ package com.junefw.infra.modules.member;
 
 public class MemberVo {
 	private String ifmmSeq;
-
+	private String shValue;
+	private String shOption;
 //	paging
 	private int thisPage = 1;									// 현재 페이지
 	private int rowNumToShow = 5;								// 화면에 보여줄 데이터 줄 갯수
@@ -64,6 +65,26 @@ public class MemberVo {
 			
 		}
 	 
+	 
+	public String getShOption() {
+		return shOption;
+	}
+
+
+	public void setShOption(String shOption) {
+		this.shOption = shOption;
+	}
+
+
+	public String getShValue() {
+		return shValue;
+	}
+
+
+	public void setShValue(String shValue) {
+		this.shValue = shValue;
+	}
+
 
 	public String getIfmmSeq() {
 		return ifmmSeq;

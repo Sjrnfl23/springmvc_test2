@@ -55,7 +55,12 @@ th, td {
        
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <select id="shOption" name="shOption">
+      <option>::구분::
+      <option value="1"<c:if test="${vo.shOption eq 1 }">selected</c:if>>이름
+      <option value="2"<c:if test="${vo.shOption eq 2 }">selected</c:if>>아이디
+      </select>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"  name="shValue" value="<c:out value="${vo.shValue}"/>">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

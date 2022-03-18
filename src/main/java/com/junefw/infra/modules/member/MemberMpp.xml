@@ -18,9 +18,23 @@
 				infrMember a
 			left join infrmemberphone b on b.ifmmseq=a.ifmmseq and b.ifmpDefaultNy = 1
 			left join infrmemberEmail c on c.ifmmseq=a.ifmmseq and c.ifmeDefaultNy = 1
-			
-			 limit #{startRnumForMysql},#{rowNumToShow}
+			where 
+				1=1
+		
+				
+					 <choose>
+					 <when test="shOption == 1"> and a.ifmmName LIKE concat('%', #{shValue} ,'%') </when>
+					<when test="shOption == 2"> and a.ifmmId LIKE concat('%', #{shValue} ,'%') </when>
+							
+					 </choose>
+					 
 					
+			 limit #{startRnumForMysql},#{rowNumToShow}
+			 
+					
+					 
+					
+		
 	</select>
 	<insert id="insert">
 			insert into infrMember(

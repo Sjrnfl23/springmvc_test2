@@ -17,7 +17,8 @@
 	</c:forEach>
 
 </select>
-<input type="submit" name="search">
+<input type="text" name="shValue" value="<c:out value="${vo.shValue}"/>">
+<input type="submit" name="search" value="검색">
 <br>
 
 

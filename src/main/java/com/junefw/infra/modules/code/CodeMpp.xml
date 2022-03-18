@@ -56,7 +56,10 @@
 	FROM 
 		nct.infrCode a
 	WHERE 1=1
-		AND ifcdDelNy = 0
+			
+		<if test="shValue != null and !shValue.equals('')"> AND ifcdName LIKE concat('%',#{shValue},'%') </if>
+		
+		
 		
 		<if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> and ifcgSeq = #{shIfcgSeq} </if>
 		

@@ -12,18 +12,17 @@ public class XdiminController {
 
 	@Autowired
 	XdminServiceImpl service;
-	
-	/*
-	 * @RequestMapping(value = "/xdmin/xdminForm") public String userForm(Model
-	 * model) throws Exception {
-	 * 
-	 * return "xdmin/xdminForm"; }
-	 * 
-	 * @RequestMapping(value = "/xdmin/xdminList") public String userList(Model
-	 * model) throws Exception {
-	 * 
-	 * return "xdmin/xdminList"; }
-	 */
 
-	
+	@RequestMapping(value = "/xdmin/xdminForm")
+	public String userForm(Model model) throws Exception {
+
+		return "xdmin/xdminForm";
+	}
+
+	@RequestMapping(value = "/xdmin/xdminList")
+	public String userList(Model model) throws Exception {
+
+		return "xdmin/xdminList";
+	}
+
 }

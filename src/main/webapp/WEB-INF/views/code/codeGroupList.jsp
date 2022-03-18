@@ -12,16 +12,23 @@
 	crossorigin="anonymous">
 <form action="/infra/code/codeGroupList" method="get">
 
-	<select name="shIfcgDelNy">
+	<select name="shIfcgDelNy" id="shIfcgDelNy">
 		<option value="">::삭제여부::
-		<option value="1">Y
-		<option value="0">N
-	</select> || 회원 이름: <input type="text" id="shIfcgName" name="shIfcgName"> || <select
-		name="shOption">
+		<option value="1"<c:if test="${vo.shIfcgDelNy eq 1 }">selected</c:if>>Y
+		<option value="0"<c:if test="${vo.shIfcgDelNy eq 0 }">selected</c:if>>N
+	</select> 
+	 
+	 ||
+	 코드그룹이름 : <input type="text" id="shIfcgName" name="shIfcgName" value="<c:out value="${vo.shIfcgName }"/>">
+	 ||
+	 
+	 <select name="shOption" id="shOption">
+		
+		
 		<option value="">::검색구분::
-		<option value="1">한글
-		<option value="2">영문
-	</select> <input type="text" name="shValue" id="shValue"> 
+		<option value="1"<c:if test="${vo.shOption eq 1 }">selected</c:if>>한글
+		<option value="2"<c:if test="${vo.shOption eq 2 }">selected</c:if>>영문
+	</select> <input type="text" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>"> 
 	<input type="submit"name="search" value="검색">
 	
 		 <input type="submit" name="search" id="btnSubmit"> <br>
