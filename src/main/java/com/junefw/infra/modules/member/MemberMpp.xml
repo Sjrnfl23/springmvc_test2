@@ -50,9 +50,45 @@
 			,#{ifmmGenderCd}
 			,0
 		)
+			<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
+	SELECT last_insert_id()
+	</selectKey>
 				
 	</insert>
 	
+	<insert id="insertPhone">
+			insert into infrMemberPhone(
+			
+			ifmpNumber
+			,ifmpDelNy
+			,ifmmSeq
+			,ifmpDefaultNy
+		) values (
+			
+			#{ifmpNumber}
+			,0
+			,#{ifmmSeq}
+			,1
+		)
+	
+	</insert>
+	
+	<insert id="insertEmail">
+			insert into infrMemberEmail(
+			
+			ifmeEmailFull
+			,ifmeDelNy
+			,ifmmSeq
+			,ifmeDefaultNy
+		) values (
+			
+			#{ifmeEmailFull}
+			,0
+			,#{ifmmSeq}
+			,1
+		)
+	
+	</insert>
 	<select id="selectOneCount" resultType="Integer">
 	select
 		count(*)
@@ -113,6 +149,7 @@
 		from infrmember a
 	where
 		ifmmSeq=#{ifmmSeq}
+	
 	
 	
 	

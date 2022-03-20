@@ -16,10 +16,10 @@ public class XdminDao {
 //	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 
-	private static String namespace = "com.junefw.infra.modules.member.MemberMpp";
+	private static String namespace = "com.junefw.infra.modules.xdmin.XdminMpp";
 
-	public List<Xdmin> selectList() {
-		return sqlSession.selectList(namespace + ".selectList", "");
+	public List<Xdmin> selectList(XdminVo vo) {
+		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
 
 	public int insert(Xdmin dto) {

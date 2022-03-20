@@ -27,7 +27,14 @@ public class MemberDao {
 		
 		return sqlSession.insert(namespace + ".insert", dto);
 	}
-	
+	public int insertPhone(Member dto) {
+
+		return sqlSession.insert(namespace + ".insertPhone", dto);
+
+	}
+	public int insertEmail(Member dto) {
+		return sqlSession.insert(namespace+".insertEmail",dto);
+	}
 	public Member selectOne(MemberVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}

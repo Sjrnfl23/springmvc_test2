@@ -7,9 +7,10 @@
 
 
 <form method="post" action="/infra/code/codeGroupInst" >
-<input type ="text" name="ifcgName" placeholder="아이디">
-
+<input type ="text" name="ifcgName" placeholder="코드그룹">
+<input type ="text" name="ifcdName" placeholder="코드">
 <input type ="submit" value="제출">
 
 </form>
+<script src="/infra/resources/js/vaildation.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

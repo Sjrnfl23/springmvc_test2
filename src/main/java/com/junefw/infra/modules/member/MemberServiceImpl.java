@@ -18,7 +18,12 @@ public class MemberServiceImpl implements MemberService{
 		return dao.selectList(vo); 
 	}
 	public int insert(Member dto) throws Exception{
-		return dao.insert(dto);
+		dao.insert(dto);
+		dao.insertEmail(dto);
+		dao.insertPhone(dto);
+		
+		return 1;
+				
 	}
 	
 	public Member selectOne(MemberVo vo) throws Exception{
@@ -34,6 +39,16 @@ public class MemberServiceImpl implements MemberService{
 	public int selectOneCount(MemberVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectOneCount(vo);
+	}
+	@Override
+	public int insertEmail(Member dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.insertEmail(dto);
+	}
+	@Override
+	public int insertPhone(Member dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.insertPhone(dto);
 	}
 	
 	

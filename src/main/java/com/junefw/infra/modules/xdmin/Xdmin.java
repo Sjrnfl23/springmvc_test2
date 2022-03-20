@@ -7,9 +7,9 @@ public class Xdmin {
 	private String ifmmName= "";
 	private Integer ifmmDelNy;
 	private String ifmmGender="";
-	private String ifmmPhone="";
+	private String ifmpPhone="";
 	private String ifmeEmailFull;
-	private String ifmmBod;
+	private String ifmmDob;
 	private String ifaoUrl;
 	private String ifaoSnsType;
 	private String ifmmPassword;
@@ -19,9 +19,34 @@ public class Xdmin {
 	private String ifjqAnswer;
 	private String ifjqQuestionName;
 	private String ifmmGenderCd="";
+	private String ifmmPushConsentNy;
+	private String ifmpNumber;
 	
 	
-	
+	public String getIfmpNumber() {
+		return ifmpNumber;
+	}
+	public void setIfmpNumber(String ifmpNumber) {
+		this.ifmpNumber = ifmpNumber;
+	}
+	public String getIfmpPhone() {
+		return ifmpPhone;
+	}
+	public void setIfmpPhone(String ifmpPhone) {
+		this.ifmpPhone = ifmpPhone;
+	}
+	public String getIfmmDob() {
+		return ifmmDob;
+	}
+	public void setIfmmDob(String ifmmDob) {
+		this.ifmmDob = ifmmDob;
+	}
+	public String getIfmmPushConsentNy() {
+		return ifmmPushConsentNy;
+	}
+	public void setIfmmPushConsentNy(String ifmmPushConsentNy) {
+		this.ifmmPushConsentNy = ifmmPushConsentNy;
+	}
 	public String getIfmmGenderCd() {
 		return ifmmGenderCd;
 	}
@@ -47,12 +72,7 @@ public class Xdmin {
 	public void setIfmmGender(String ifmmGender) {
 		this.ifmmGender = ifmmGender;
 	}
-	public String getIfmmPhone() {
-		return ifmmPhone;
-	}
-	public void setIfmmPhone(String ifmmPhone) {
-		this.ifmmPhone = ifmmPhone;
-	}
+	
 	public String getIfmeEmailFull() {
 		return ifmeEmailFull;
 	}
@@ -73,12 +93,7 @@ public class Xdmin {
 	public void setIfaoSnsType(String ifaoSnsType) {
 		this.ifaoSnsType = ifaoSnsType;
 	}
-	public String getIfmmBod() {
-		return ifmmBod;
-	}
-	public void setIfmmBod(String ifmmBod) {
-		this.ifmmBod = ifmmBod;
-	}
+
 	//------------
 	public String getIfmmSeq() {
 		return ifmmSeq;

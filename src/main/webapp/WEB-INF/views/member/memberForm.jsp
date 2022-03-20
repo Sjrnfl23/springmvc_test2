@@ -131,18 +131,19 @@ th,td {
 		<tr>
 			<td>모바일(-포함)</td>
 			<td>
-			<select >
+			<select>
 			<option>KT
 			<option>SKT
 			<option>LGU+
 			</select>
-			<select >
+			
+			<select>
 			<option>010
 			<option>016
 			<option>019
 			</select>
 			
-			<input type="text" id="phone" name="phone" size="20" placeholder="모바일(-포함)">
+			<input type="text" id="ifmpNumber" name="ifmpNumber" size="20" placeholder="모바일(-포함)">
 			
 			</td>
 			<td>모바일 마케팅 수신 동의</td>
@@ -403,28 +404,8 @@ th,td {
 	</table>
 
 <br>
-<input type="button" class="btn btn-primary" name="" id="" data-bs-toggle="modal" data-bs-target="#form1" value="제출"> 
-	
-	<div class="modal fade" id="form1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" >
-        제출 하시겠습니까?
-      </div>
-      <div class="modal-footer">
-     
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        
-        <input type="submit" class="btn btn-primary" value="제출">
-      
-      </div>
-    </div>
-  </div>
-</div>
+<input type="submit" id="btnSubmit" class="btn btn-primary" value="제출">
+
 
 
 
@@ -434,22 +415,23 @@ th,td {
 
 
 
+
+</body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 
-var toastTrigger = document.getElementById('liveToastBtn')
-var toastLiveExample = document.getElementById('liveToast')
-if (toastTrigger) {
-  toastTrigger.addEventListener('click', function () {
-    var toast = new bootstrap.Toast(toastLiveExample)
+$("#btnSubmit").on("click",function(){
+	
+	checkMobile(${"#ifmpNumber"},${"#ifmpNumber"}.val(),"전화번호 체크!");
+	
+});	
 
-    toast.show()
-  })
-}
 </script>
+<script src="/infra/resources/js/vaildation.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
-
-</body>
 </html>
+
+

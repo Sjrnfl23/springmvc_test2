@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.junefw.infra.modules.member.Member;
+
 @Controller
 public class XdiminController {
 
@@ -20,8 +22,10 @@ public class XdiminController {
 	}
 
 	@RequestMapping(value = "/xdmin/xdminList")
-	public String userList(Model model) throws Exception {
-
+	public String userList(Model model,XdminVo vo) throws Exception {
+		List<Xdmin> list = service.selectList(vo);
+		model.addAttribute("list",list);
+		
 		return "xdmin/xdminList";
 	}
 

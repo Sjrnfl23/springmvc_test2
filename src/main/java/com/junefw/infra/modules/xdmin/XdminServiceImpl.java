@@ -12,8 +12,9 @@ public class XdminServiceImpl implements XdminService{
 	XdminDao dao;
 	
 	@Override
-	public List<Xdmin> selectList() throws Exception {
-		return dao.selectList(); 
+	public List<Xdmin> selectList(XdminVo vo) throws Exception {
+		
+		return dao.selectList(vo); 
 	}
 	public int insert(Xdmin dto) throws Exception{
 		return dao.insert(dto);

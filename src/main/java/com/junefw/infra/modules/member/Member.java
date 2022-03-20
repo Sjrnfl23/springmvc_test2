@@ -19,9 +19,16 @@ public class Member {
 	private String ifjqAnswer;
 	private String ifjqQuestionName;
 	private String ifmmGenderCd="";
+	private String ifmpNumber;
 	
 	
 	
+	public String getIfmpNumber() {
+		return ifmpNumber;
+	}
+	public void setIfmpNumber(String ifmpNumber) {
+		this.ifmpNumber = ifmpNumber;
+	}
 	public String getIfmmGenderCd() {
 		return ifmmGenderCd;
 	}

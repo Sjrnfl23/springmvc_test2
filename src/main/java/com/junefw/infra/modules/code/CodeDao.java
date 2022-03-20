@@ -31,6 +31,7 @@ public class CodeDao {
 		return sqlSession.insert(namespace + ".insert", dto);
 
 	}
+	
 
 	public Code selectOne(CodeVo vo) throws Exception {
 

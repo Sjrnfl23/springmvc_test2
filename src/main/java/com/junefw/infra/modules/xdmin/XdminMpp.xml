@@ -7,15 +7,28 @@
 	<resultMap id="resultMapObj" type="com.junefw.infra.modules.xdmin.Xdmin"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
-	select
-	a.ifmmName
-	,a.ifmm
+	 select
+				a.ifmmSeq
+				, a.ifmmName
+				,a.ifmmDob
+				, concat(substring(b.ifmpNumber,1,3),"-",substring(b.ifmpNumber,4,4),"-",substring(b.ifmpNumber,7,4)) as ifmpPhone
+				,(select ifcdName from infrcode where ifmmGenderCd=ifcdseq) as ifmmGender
+				,c.ifmeEmailFull
+				,d.ifnaName
+				,a.ifmmPushConsentNy
+				from
+				infrMember a
+			left join infrmemberphone b on b.ifmmseq=a.ifmmseq and b.ifmpDefaultNy = 1
+			left join infrmemberEmail c on c.ifmmseq=a.ifmmseq and c.ifmeDefaultNy = 1
+		
+			left join infrmembernationalty e on e.ifmmseq=a.ifmmseq  and ifmnDefaultNy=1
+            	left join infrnationalty d on d.ifnaseq=e.ifnaseq 
+			where 
+				1=1
+	
 	
 	
 	</select>
 
 	
-	
-	
-
 </mapper>

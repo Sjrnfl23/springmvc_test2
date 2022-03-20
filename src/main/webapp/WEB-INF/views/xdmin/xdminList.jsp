@@ -158,8 +158,10 @@ text-decoration:none;
 				<div class="col-md-2 col-6">
 					<input type="text" class="form-control" id="firstdate"
 						name="firstdate" placeholder="시작일">
-				</div>
+				</div>	
+				~
 				<div class="col-md-2 col-6">
+			
 					<input type="text" class="form-control" id="firstdate"
 						name="firstdate" placeholder="종료일">
 				</div>
@@ -211,38 +213,67 @@ text-decoration:none;
 		   <colgroup>
 		  <col style="width:2%">
 		  </colgroup> 
+		  	<c:choose>
+	<c:when test="${fn:length(list) eq 0}">
+		<tr>
+			<td class="text-center" colspan="9">There is no data!</td>
+		</tr>	
+		
+	</c:when>
+	<c:otherwise>
+	
 			<thead class="table-dark">
+			
 				<tr>
 					<th><input type="checkbox" id="" name=""
 						class="form-check-input"></th>
-					<!-- td크기 조절? -->
+					
 					<th>#</th>
 					<th>Name</th>
-					
 					<th>Age</th>
-					<th>City</th>
 					<th>Country</th>
 					<th>Gender</th>
-					<th>Example</th>
-					<th>Example</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>InfoAgree</th>
 				</tr>
 			</thead>
-			<tr>
+			
+			
+			
+			
+		
+		
+		
+	
+		<c:forEach items="${list}" var="item" varStatus="status">
+	
+		<tr>
+		
+		
 				<td><input type="checkbox" id="" name=""
 					class="form-check-input"></td>
-				<td>1</td>
+				<td><c:out value="${item.ifmmSeq}"/></td>
+				<td><c:out value="${item.ifmmName}"/></td>
+				<td><c:out value="${item.ifmmDob}"/></td>
+				<td><c:out value="${item.ifnaName}"/></td>
+				<td><c:out value="${item.ifmmGender}"/></td>
+				<td><c:out value="${item.ifmpPhone}"/></td>
+				<td><c:out value="${item.ifmeEmailFull}"/></td>
+				<td><c:out value="${item.ifmmPushConsentNy}"/></td>
 				
-				<td>Pitt</td>
-				<td>35</td>
-				<td>New York</td>
-				<td>USA</td>
-				<td>Female</td>
-				<td>Yes</td>
-				<td>Yes</td>
-
-			</tr>
+				</tr>
+				
+</c:forEach>
+		
+		</c:otherwise>
+		
+		</c:choose>	
+		 
+			
 		
 
+		
 		</table>
 	</div>
 	<br>

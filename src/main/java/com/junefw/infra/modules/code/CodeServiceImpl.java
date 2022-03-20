@@ -24,7 +24,9 @@ public class CodeServiceImpl implements CodeService{
 	
 	@Override
 	public int insert(Code dto) throws Exception{
-		return dao.insert(dto);
+		dao.insert(dto);
+		dao.insert2(dto);
+		return 1;
 	}
 	public Code selectOne(CodeVo vo) throws Exception{
 		return dao.selectOne(vo);
