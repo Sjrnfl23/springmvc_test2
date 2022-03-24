@@ -43,7 +43,7 @@
 		<c:otherwise>
 			<c:forEach items="${list}" var="item" varStatus="status">
 				<a
-					href="/infra/code/codeGroupView?ifcgSeq=<c:out value="${item.ifcgSeq}"/>">
+					href="/infra/code/codeGroupView?ifcgSeq=<c:out value="${item.ifcgSeq}"/>&thisPage=${vo.thisPage}&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">
 					<c:out value="${item.ifcgSeq}" /> | <c:out value="${item.ifcgName}" />
 					| <c:out value="${item.ifcgNameEng}" />
 				</a>
@@ -85,6 +85,7 @@
 
 		</ul>
 	</nav>
+<a href="/infra/code/codeGroupForm?thisPage=${vo.thisPage}&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">등록</a>
 
 </form>
 

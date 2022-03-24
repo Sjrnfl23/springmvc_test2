@@ -61,7 +61,7 @@ th, td {
       <option value="2"<c:if test="${vo.shOption eq 2 }">selected</c:if>>아이디
       </select>
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"  name="shValue" value="<c:out value="${vo.shValue}"/>">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success" id="btnSubmit" type="submit">Search</button>
       </form>
     </div>
   </div>
@@ -145,7 +145,33 @@ th, td {
   
 </nav>
 
+<script src="/infra/resources/js/vaildation.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	
+	$("#btnSubmit").on("click",function(){
+		
+		if(!checkNull($("#shOption"), $("#shOption").val() , "코드그룹이름을 입력해 주세요!" )) {
+			return false;			
+		}
+		if(!checkNull($("#shValue"), $("#shValue").val() , "검색어를 입력해 주세요!" )) {
+			return false;			
+		}
+		 
+		 
+	/* 	checkNull($("#shValue") , $("#shIfcgName").val() , "null 이다."); */
+		
+	/* 	alert($("#shOption").val()); */
+	
 
+ 	
+ 	/* alert("javascript: " + document.getElementById("shIfcgName").value  ); */
+ 	
+ 
+});
+	</script>
+	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 

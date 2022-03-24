@@ -9,7 +9,8 @@
 	<sql id="selectCommon">
 		FROM 
 		nct.infrCodeGroup a
-	WHERE 1=1
+	WHERE 1=1 AND ifcgDelNy=0
+	
 		<choose>
 			<when test="shIfcgDelNy == 1">AND a.ifcgDelNy = 1</when>
 			<when test="shIfcgDelNy == 0">AND a.ifcgDelNy = 0</when>
@@ -138,6 +139,14 @@
 	where 
 		a.ifcdSeq=#{ifcdSeq}
 	</update>
-
+	
+	
+	<delete id="delete">
+	DELETE from infrCodeGroup a where 1=1 AND a.ifcgSeq=#{ifcgSeq}
+	</delete>
+	
+	<update id="updateDelete">
+	UPDATE infrCodeGroup SET ifcgDelNy=1 where 1=1 AND ifcgSeq = #{ifcgSeq}
+	</update>
 
 </mapper>

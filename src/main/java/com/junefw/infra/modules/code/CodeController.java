@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CodeController {
@@ -37,22 +38,36 @@ public class CodeController {
 	
 	
 	@RequestMapping(value = "/code/codeGroupForm")
-	public String codeGroupForm() throws Exception {
+	public String codeGroupForm(@ModelAttribute("vo") CodeVo vo) throws Exception {
 		
 		return "code/codeGroupForm";
 	}
 	
 	
 	@RequestMapping(value = "/code/codeGroupInst")
-	public String codeGroupInst(Code dto) throws Exception{
+	public String codeGroupInst(Code dto,CodeVo vo,RedirectAttributes redirectAttributes) throws Exception{
 		
 		service.insert(dto);
 		
-		return "";
+		redirectAttributes.addAttribute("ifcgSeq",dto.getIfcgSeq());
+		redirectAttributes.addAttribute("thisPage",vo.getThisPage());
+		redirectAttributes.addAttribute("shOption",vo.getShOption());
+		redirectAttributes.addAttribute("shValue",vo.getShValue());
+		
+		return "redirect:/code/codeGroupView";
+				
+		/*
+		 * return
+		 * "redirect:/code/codeGroupView?ifcgSeq="+dto.getIfcgSeq()+makeQueryString(vo);
+		 */
 	}
 	
 	@RequestMapping(value = "/code/codeGroupView")
-	public String codeGroupView(CodeVo vo,Model model) throws Exception{
+	public String codeGroupView(@ModelAttribute("vo")CodeVo vo,Model model) throws Exception{
+		System.out.println("vo.getShoption()"+vo.getShOption());
+		System.out.println("vo.getShValue()"+vo.getShValue());
+		System.out.println("vo.getThisPage()"+vo.getThisPage());
+		
 		Code rt=service.selectOne(vo);
 		
 		model.addAttribute("item",rt);
@@ -62,8 +77,13 @@ public class CodeController {
 		return "code/codeGroupView";
 	}
 	
+	public String makeQueryString(CodeVo vo) {
+		String tmp="&thisPage="+vo.getThisPage()+"&shOption="+vo.getShOption()+"&shValue="+vo.getShValue();
+		return tmp;
+	}
+	
 	@RequestMapping(value = "/code/codeGroupEdit")
-	public String codeGroupEdit(Model model,CodeVo vo) throws Exception {
+	public String codeGroupEdit(Model model,@ModelAttribute("vo") CodeVo vo) throws Exception {
 		Code rt=service.selectOne(vo);
 		
 		model.addAttribute("item",rt);
@@ -72,15 +92,38 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/code/codeGroupUpdate")
-	public String codeGroupUpdate(Code dto) throws Exception{
+	public String codeGroupUpdate(Code dto,CodeVo vo) throws Exception{
 		
 		
 		service.update(dto);
 		
 		
-		return "";
+		return "redirect:/code/codeGroupView?ifcgSeq="+dto.getIfcgSeq()+makeQueryString(vo);
 	}
 	
+	
+	@RequestMapping(value = "/code/codeGroupDele")
+	public String codeGroupDele(CodeVo vo,Code dto,RedirectAttributes redirectAttributes) throws Exception {
+			service.delete(vo);
+		
+		   redirectAttributes.addAttribute("ifcgSeq", dto.getIfcgSeq());
+		   redirectAttributes.addAttribute("thisPage", vo.getThisPage());	
+		   redirectAttributes.addAttribute("shOption", vo.getShOption());	
+		   redirectAttributes.addAttribute("shValue", vo.getShValue());	
+		
+		return "redirect:/code/codeGroupList";
+	}
+	@RequestMapping(value = "/code/codeGroupNele")
+	public String codeGroupEDle(CodeVo vo,Code dto,RedirectAttributes redirectAttributes) throws Exception {
+			service.updateDelete(vo);
+		
+		   redirectAttributes.addAttribute("ifcgSeq", dto.getIfcgSeq());
+		   redirectAttributes.addAttribute("thisPage", vo.getThisPage());	
+		   redirectAttributes.addAttribute("shOption", vo.getShOption());	
+		   redirectAttributes.addAttribute("shValue", vo.getShValue());	
+		
+		return "redirect:/code/codeGroupList";
+	}
 	
 	// ---------------------------
 	// code

@@ -141,9 +141,9 @@ text-decoration:none;
 				<div class="col-md-2 col-6">
 					<select class="form-select" aria-label="Default select example">
 						<option selected>삭제여부</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+						<option value="1">Y</option>
+						<option value="2">N</option>
+						
 					</select>
 				</div>
 				<div class="col-md-2 col-6">
@@ -171,9 +171,9 @@ text-decoration:none;
 				<div class="col-md-2 col-6">
 					<select class="form-select" aria-label="Default select example">
 						<option selected>검색구분</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+						<option value="1">이름</option>
+						<option value="2">ID</option>
+						<option value="3">국적</option>
 					</select>
 				</div>
 
@@ -254,7 +254,7 @@ text-decoration:none;
 				<td><input type="checkbox" id="" name=""
 					class="form-check-input"></td>
 				<td><c:out value="${item.ifmmSeq}"/></td>
-				<td><c:out value="${item.ifmmName}"/></td>
+				<td><a href="/infra/xdmin/xdminView?ifmmSeq=<c:out value="${item.ifmmSeq}"/>&thisPage=${vo.thisPage}<%-- &shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/> --%>"><c:out value="${item.ifmmName}"/></a></td>
 				<td><c:out value="${item.ifmmDob}"/></td>
 				<td><c:out value="${item.ifnaName}"/></td>
 				<td><c:out value="${item.ifmmGender}"/></td>
@@ -277,23 +277,39 @@ text-decoration:none;
 		</table>
 	</div>
 	<br>
-		<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-				</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">4</a></li>
-				<li class="page-item"><a class="page-link" href="#">5</a></li>
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
-			</ul>
-		</nav>
+	<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+  
+   <c:if test="${vo.startPage gt vo.pageNumToShow}">
+                <li class="page-item"><a class="page-link" href="/infra/xdmin/xdminList?thisPage=${vo.startPage - 1}">Previous</a></li>
+</c:if>
 
+<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+	<c:choose>
+		<c:when test="${i.index eq vo.thisPage}">
+                <li class="page-item active"><a class="page-link" href="/infra/xdmin/xdminList?thisPage=${i.index}">${i.index}</a></li>
+		</c:when>
+		<c:otherwise>             
+                <li class="page-item"><a class="page-link" href="/infra/xdmin/xdminList?thisPage=${i.index}">${i.index}</a></li>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>   
+  
+<c:if test="${vo.endPage ne vo.totalPages}">                
+                <li class="page-item"><a class="page-link" href="/infra/xdmin/xdminList?thisPage=${vo.endPage + 1}">Next</a></li>
+</c:if>
+  
+  </ul>
+  
+</nav>
+
+		
 		<div class="margin">
+			<a style="float: left; padding: 5px;" class="btn btn-success"
+				id="insert" href="xdminForm">
+				
+				등록
+			</a>
 			<a style="float: right; padding: 5px;" class="btn btn-danger "
 				id="delete" href="#">
 				
@@ -329,6 +345,13 @@ text-decoration:none;
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
+<script src="/infra/resources/js/vaildation.js"></script>
 
+
+
+
+	
 </body>
+
+
 </html>

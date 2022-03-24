@@ -56,7 +56,7 @@ th,td {
 				</td>
 			<td>아이디</td>
 			<td>
-				<input type="text" id="ifmm" name="ifmmId" size="12" placeholder="아이디" >
+				<input type="text" id="ifmmId" name="ifmmId" size="12" placeholder="아이디" >
 					
 			<!-- 	<div class="col-auto">
     <span id="idexplain" class="form-text">
@@ -419,16 +419,20 @@ th,td {
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+<script src="/infra/resources/js/vaildation.js"></script>
+
 <script type="text/javascript">
 
 $("#btnSubmit").on("click",function(){
 	
-	checkMobile(${"#ifmpNumber"},${"#ifmpNumber"}.val(),"전화번호 체크!");
+	if(!checkNull(${"#ifmmName"} , ${"#ifmmName"}.val() , "이름 체크!")){
+		return false;
+	}
 	
 });	
 
 </script>
-<script src="/infra/resources/js/vaildation.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 

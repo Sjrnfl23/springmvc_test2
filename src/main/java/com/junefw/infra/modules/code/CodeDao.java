@@ -41,6 +41,9 @@ public class CodeDao {
 	public int update(Code dto) throws Exception {
 		return sqlSession.update(namespace + ".update", dto);
 	}
+	public int delete(CodeVo vo) throws Exception{ return sqlSession.delete(namespace+".delete",vo);}
+	
+	public int updateDelete(CodeVo vo) throws Exception { return sqlSession.update(namespace+".updateDelete",vo); }
 	
 	//-----------------------------------------------------------
 	

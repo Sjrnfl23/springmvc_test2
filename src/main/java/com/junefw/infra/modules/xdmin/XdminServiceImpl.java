@@ -17,7 +17,10 @@ public class XdminServiceImpl implements XdminService{
 		return dao.selectList(vo); 
 	}
 	public int insert(Xdmin dto) throws Exception{
-		return dao.insert(dto);
+		dao.insert(dto);
+		dao.insertEmail(dto);
+		dao.insertPhone(dto);
+		return 1;
 	}
 	public Xdmin selectOne(XdminVo vo) throws Exception{
 		return dao.selectOne(vo);
@@ -27,5 +30,21 @@ public class XdminServiceImpl implements XdminService{
 	}
 	public int delete(XdminVo vo) throws Exception{
 		return dao.delete(vo);
+	}
+	@Override
+	public int insertEmail(Xdmin dto) {
+		
+		return dao.insertEmail(dto);
+	}
+	
+	@Override
+	public int insertPhone(Xdmin dto) {
+		
+		return dao.insertPhone(dto);
+	}
+	@Override
+	public int selectOneCount(XdminVo vo) {
+		// TODO Auto-generated method stub
+		return dao.selectOneCount(vo);
 	}
 }

@@ -48,5 +48,6 @@ public class MemberDao {
 	public int selectOneCount(MemberVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
+	
 
 }
