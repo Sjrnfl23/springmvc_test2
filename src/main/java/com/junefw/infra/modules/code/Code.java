@@ -1,7 +1,12 @@
 package com.junefw.infra.modules.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
 	
+	
+	public static List<Code> cachedCodeArrayList=new ArrayList<Code>();
 	// DTO
 	private String ifcgSeq;
 	private String ifcgName;
@@ -11,6 +16,7 @@ public class Code {
 	private Integer ifcdOrder;
 	private Integer ifcdDelNy;
 	private String ifcgNameEng;
+	
 	
 	
 	public String getIfcgNameEng() {

@@ -148,5 +148,19 @@
 	<update id="updateDelete">
 	UPDATE infrCodeGroup SET ifcgDelNy=1 where 1=1 AND ifcgSeq = #{ifcgSeq}
 	</update>
+	
+	 <select id="selectListForCache" resultMap="resultMapObj">
+		
+		SELECT 
+			ifcdSeq
+			, ifcdName
+			, ifcgSeq
+		FROM 
+			infrCode
+		WHERE 1=1
+			AND ifcdDelNy = 0
+			AND ifcdUseNy = 1
+		
+	</select>
 
 </mapper>

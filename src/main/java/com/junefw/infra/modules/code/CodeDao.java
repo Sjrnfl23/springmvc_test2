@@ -69,5 +69,8 @@ public class CodeDao {
 	public int selectOneCount2(CodeVo vo) throws Exception{
 		return sqlSession.selectOne(namespace+".selectOneCount2",vo);
 	}
+	public List<Code> selectListForCache() throws Exception{
+		return sqlSession.selectList(namespace+".selectListForCache",null);
+	}
 
 }

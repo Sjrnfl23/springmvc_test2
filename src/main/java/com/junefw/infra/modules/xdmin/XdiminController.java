@@ -25,8 +25,10 @@ public class XdiminController {
 	@RequestMapping(value = "/xdmin/xdminInst")
 	public String userInst(Model model,Xdmin dto) throws Exception {
 		
+		
 		service.insert(dto);
-		return "redirect:xdmin/xdminList";
+		
+		return "redriect:/xdmin/xdminList";
 	}
 
 	@RequestMapping(value = "/xdmin/xdminList")
@@ -35,6 +37,9 @@ public class XdiminController {
 		vo.setParamsPaging(count);
 		
 		if(count!=0) {
+			System.out.println(vo.getShOption());
+			System.out.println(vo.getShValue());
+			
 			List<Xdmin> list = service.selectList(vo);
 			model.addAttribute("list",list);
 		}
@@ -44,10 +49,19 @@ public class XdiminController {
 	}
 	@RequestMapping(value = "/xdmin/xdminView")
 	public String xdminView(XdminVo vo,Model model) throws Exception {
-		
-		
+		Xdmin xdmin= service.selectOne(vo);
+		model.addAttribute("item",xdmin);
 		
 		return "xdmin/xdminView";
+	}
+	
+	@RequestMapping(value = "/xdmin/userListDele")
+	public String userListDele(XdminVo vo,Model model) throws Exception {
+		
+		service.delete(vo);
+		
+		
+		return "redriect:/xdmin/xdminList";
 	}
 
 }

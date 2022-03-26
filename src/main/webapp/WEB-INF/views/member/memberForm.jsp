@@ -111,7 +111,9 @@ th,td {
 				<input type="radio" name="ifmmGenderCd" class="btn-check" id="woman" value="6">
 				<label class="btn btn-outline-danger" for="woman">여성</label>
 			
+			
 			</td>
+		
 		</tr>
 		<tr>
 			<td>생일</td>
@@ -317,8 +319,6 @@ th,td {
 			<td>직업(희망)</td>
 			<td><input type="text" id="job" name="job" size="15" placeholder="직업(희망)"> </td>
 		</tr>
-		
-		
 	
 
 
@@ -413,7 +413,21 @@ th,td {
 
  <a href="memberList"><input type="button" value="목록" class="btn btn-secondary"></a>
 
+<table>
 
+<select id="ifmmGenderCd" name="ifmmGenderCd">
+		
+		
+		<option value="">::선택::</option>
+		
+		<c:forEach items="${codeGender}" var="itemGender" varStatus="statusGender">
+		
+		<option value="<c:out value="${itemGender.ifcdSeq}"/>" <c:if test="${item.ifmmGenderCd}"/>">
+		
+		</c:forEach>
+		
+		</select> 
+</table>
 
 
 </body>

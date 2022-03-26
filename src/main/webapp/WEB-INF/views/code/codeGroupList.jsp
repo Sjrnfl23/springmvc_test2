@@ -5,14 +5,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags"%>
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<form action="/infra/code/codeGroupList" method="get">
-
-	<select name="shIfcgDelNy" id="shIfcgDelNy">
+<form action="/infra/code/codeGroupList" method="post" name="formList" id="formList">
+	<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+	<input type="hidden" id="ifcgSeq" name="ifcgSeq">
+	
+	
+		<select name="shIfcgDelNy" id="shIfcgDelNy">
 		<option value="">::삭제여부::
 		<option value="1"<c:if test="${vo.shIfcgDelNy eq 1 }">selected</c:if>>Y
 		<option value="0"<c:if test="${vo.shIfcgDelNy eq 0 }">selected</c:if>>N
@@ -43,7 +47,7 @@
 		<c:otherwise>
 			<c:forEach items="${list}" var="item" varStatus="status">
 				<a
-					href="/infra/code/codeGroupView?ifcgSeq=<c:out value="${item.ifcgSeq}"/>&thisPage=${vo.thisPage}&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">
+					href="javascript:goForm(<c:out value="${item.ifcgSeq}"/>);">
 					<c:out value="${item.ifcgSeq}" /> | <c:out value="${item.ifcgName}" />
 					| <c:out value="${item.ifcgNameEng}" />
 				</a>
@@ -56,7 +60,7 @@
 
 	<c:out value="${vo.startPage}" />
 
-	<nav aria-label="Page navigation example">
+	<%-- <nav aria-label="Page navigation example">
 		<ul class="pagination">
 
 			<c:if test="${vo.startPage gt vo.pageNumToShow}">
@@ -81,6 +85,37 @@
 			<c:if test="${vo.endPage ne vo.totalPages}">
 				<li class="page-item"><a class="page-link"
 					href="/infra/code/codeGroupList?thisPage=${vo.endPage + 1}">Next</a></li>
+			</c:if>
+
+		</ul>
+	</nav> --%>
+	
+	
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+
+			<c:if test="${vo.startPage gt vo.pageNumToShow}">
+				<li class="page-item"><a class="page-link"
+					href="javascript:goList(<c:out value="${vo.startPage - 1}"/>);">Previous</a></li>
+			</c:if>
+
+			<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+
+				<c:choose>
+					<c:when test="${i.index eq vo.thisPage}"> 
+						<li class="page-item active"><a class="page-link"
+							href="javascript:goList(<c:out value="${i.index}"/>);">${i.index}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="javascript:goList(<c:out value="${i.index}"/>);">${i.index}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+
+			<c:if test="${vo.endPage ne vo.totalPages}">
+				<li class="page-item"><a class="page-link"
+					href="javascript:goList(<c:out value="${vo.endPage+1}"/>);">Next</a></li>
 			</c:if>
 
 		</ul>
@@ -121,4 +156,19 @@
 		alert("2번재 버튼입니다.");
 		
 	});
+	
+	goList = function(seq){
+		alert(seq);
+		//form 객체 가져온후 전달
+		$("#thisPage").val(seq);
+		$("#formList").submit();
+	}
+	goForm = function(seq){
+		alert(seq);
+		$("#ifcgSeq").val(seq);
+		$("#formList").attr("action","/infra/code/codeGroupView");
+		$("#formList").submit();
+	
+	}
+	
 </script>

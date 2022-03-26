@@ -206,7 +206,7 @@ label {
 			<div class="col-6">
 				<label for="gender">성별</label>
 	<select class="form-select" id="ifmmGenderCd" name="ifmmGenderCd" aria-label="gender">
-						<option selected value="0">::선택::</option>
+						<option value="5" selected >::선택::</option>
 						<option value="5">남자</option>
 						<option value="4">여자</option>
 						<option value="6">기타</option>
@@ -261,11 +261,11 @@ label {
 		<div class="col-2">
 			<label for="birthday">핸드폰 정보 마케팅 사용 동의</label>
 			<div class="input-group mb-3">
-				<input type="radio" class="btn-check" name="phoneagree" id="phoneagree" value="동의" checked>
+				<input type="radio" class="btn-check" name="ifmmSmsConsentNy" id="ifmmSmsConsentNy" value="1" checked>
 			
-			<label class="btn btn-outline-success" for="phoneagree">동의</label>
-				<input type="radio" name="phoneagree" class="btn-check" id="phonedisagree" value="미동의">
-				<label class="btn btn-outline-danger" for="phonedisagree">미동의</label>
+			<label class="btn btn-outline-success" for="ifmmSmsConsentNy">동의</label>
+				<input type="radio" name="ifmmSmsConsentNy" class="btn-check" id="ifmmSmsConsentN" value="0">
+				<label class="btn btn-outline-danger" for="ifmmSmsConsentN">미동의</label>
 				
 				
 				
@@ -315,11 +315,11 @@ label {
 				<label for="name">거주국가</label>
 				<div class="input-group mb-3">
 
-					<select class="form-select" id="gender" name="gender" aria-label="gender">
+					<select class="form-select" id="ifnaSeq" name="ifnaSeq" aria-label="gender">
 						<option selected>::선택::</option>
-						<option value="1">남자</option>
-						<option value="2">여자</option>
-						<option value="3">기타</option>
+						<option value="3">대한민국</option>
+						<option value="2">미국</option>
+						<option value="4">일본</option>
 					</select>
 				</div>
 
@@ -342,17 +342,17 @@ label {
 		 <div class="input-group mb-3">
 		 
         
-        <input v-model="address.address1"
-               type="text" class="form-control" placeholder="주소">
+        <input 
+               type="text" class="form-control" id="ifmaAddress1" name="ifmaAddress1" placeholder="주소">
         <div class="input-group-append">
-            <button @click="clickOpenAddressModal" class="btn btn-outline-secondary" type="button">주소검색</button>
+            <button onClick="sample4_execDaumPostcode()" class="btn btn-outline-secondary" type="button">주소검색</button>
             
             
         </div>
     </div>
 
     <div class="input-group mb-3">
-        <input v-model="address.address2" type="text" class="form-control" placeholder="상세주소">
+        <input  type="text" class="form-control" placeholder="상세주소" id="ifmaAddress2" name="ifmaAddress2">
     </div>
 		
 		</div>
@@ -424,13 +424,7 @@ label {
 	</div>
 
 </main>
-   <input type="text" id="sample4_postcode" placeholder="우편번호">
-<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-<span id="guide" style="color:#999;display:none"></span>
-<input type="text" id="sample4_detailAddress" placeholder="상세주소">
-<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -460,18 +454,14 @@ label {
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample4_postcode').value = data.zonecode;
-                document.getElementById("sample4_roadAddress").value = roadAddr;
-                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+               
+                document.getElementById("ifmaAddress1").value = roadAddr;
+                
                 
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("sample4_extraAddress").value = '';
-                }
+              
 
-                var guideTextBox = document.getElementById("guide");
+              /*   
                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
                 if(data.autoRoadAddress) {
                     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
@@ -485,7 +475,7 @@ label {
                 } else {
                     guideTextBox.innerHTML = '';
                     guideTextBox.style.display = 'none';
-                }
+                } */
             }
         }).open();
     }

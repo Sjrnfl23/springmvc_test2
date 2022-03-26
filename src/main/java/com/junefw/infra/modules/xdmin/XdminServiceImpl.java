@@ -20,6 +20,8 @@ public class XdminServiceImpl implements XdminService{
 		dao.insert(dto);
 		dao.insertEmail(dto);
 		dao.insertPhone(dto);
+		dao.insertAddress(dto);
+		dao.insertCountry(dto);
 		return 1;
 	}
 	public Xdmin selectOne(XdminVo vo) throws Exception{
@@ -31,6 +33,7 @@ public class XdminServiceImpl implements XdminService{
 	public int delete(XdminVo vo) throws Exception{
 		return dao.delete(vo);
 	}
+	
 	@Override
 	public int insertEmail(Xdmin dto) {
 		

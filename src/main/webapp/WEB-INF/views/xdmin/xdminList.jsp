@@ -133,16 +133,16 @@ text-decoration:none;
 	</nav>
 	<br>
 	<p class="margin">Code</p>
-	<form action="" method="get" id="" name="" enctype="">
+	<form action="/infra/xdmin/xdminList" method="get" id="form" name="form" >
 		<div class="container-fluid"
 			style="border: 1px solid gray; margin: 20px; padding: 30px;">
 			<!-- 마진이 왼쪽만 적용됨(??) -->
 			<div class="row">
 				<div class="col-md-2 col-6">
-					<select class="form-select" aria-label="Default select example">
-						<option selected>삭제여부</option>
-						<option value="1">Y</option>
-						<option value="2">N</option>
+					<select class="form-select" aria-label="Default select example" id="shIfmmDelNy" name="shIfmmDelNy">
+						<option value="0" selected>::삭제여부::</option>
+							<option value="1" <c:if test="${vo.shIfmmDelNy eq 1 }">selected</c:if>>Y
+							<option value="0" <c:if test="${vo.shIfmmDelNy eq 0 }">selected</c:if>>N
 						
 					</select>
 				</div>
@@ -169,24 +169,24 @@ text-decoration:none;
 			<br>
 			<div class="row">
 				<div class="col-md-2 col-6">
-					<select class="form-select" aria-label="Default select example">
-						<option selected>검색구분</option>
-						<option value="1">이름</option>
-						<option value="2">ID</option>
-						<option value="3">국적</option>
+					<select class="form-select" id="shOption" name="shOption"aria-label="Default select example">
+						<option value="1" selected>검색구분</option>
+						<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>이름</option>
+						<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>ID</option>
+						<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>국적</option>
 					</select>
 				</div>
 
 				<div class="col-md-2 col-6">
-					<input type="text" class="form-control" id="firstdate"
-						name="firstdate" placeholder="검색어">
+					<input type="text" class="form-control" id="shValue"
+						name="shValue" placeholder="검색어" value="<c:out value="${vo.shValue}"/>">
 
 				</div>
 				<div style="margin:3px;" class="col">
-					<button style="padding: 5px;" class="btn btn-warning " id="delete"
-						name="delete">검색
+					<input type="submit" style="padding: 5px;" class="btn btn-warning " id="delete"
+						name="delete" value="검색">
 						
-					</button>
+					
 					<button style="margin:3px ;padding: 5px;" class="btn btn-danger " id="delete"
 						name="delete">초기화
 						
@@ -225,7 +225,7 @@ text-decoration:none;
 			<thead class="table-dark">
 			
 				<tr>
-					<th><input type="checkbox" id="" name=""
+					<th><input type="checkbox" id="check" name="check"
 						class="form-check-input"></th>
 					
 					<th>#</th>
@@ -251,7 +251,7 @@ text-decoration:none;
 		<tr>
 		
 		
-				<td><input type="checkbox" id="" name=""
+				<td><input type="checkbox" id="check" name="check"
 					class="form-check-input"></td>
 				<td><c:out value="${item.ifmmSeq}"/></td>
 				<td><a href="/infra/xdmin/xdminView?ifmmSeq=<c:out value="${item.ifmmSeq}"/>&thisPage=${vo.thisPage}<%-- &shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/> --%>"><c:out value="${item.ifmmName}"/></a></td>
@@ -340,6 +340,7 @@ text-decoration:none;
 		<hr>
 	</form>
 	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -347,7 +348,39 @@ text-decoration:none;
 
 <script src="/infra/resources/js/vaildation.js"></script>
 
+<script type="text/javascript">
 
+$("#btnSave").on("click",function(){
+	if(seq.val() == "0"){
+	
+		if(vaildationInst()==false) return false;
+		setCheckboxValue($("ifmmEmailConsent"),$("#ifmmEmailConsentNy"));
+		setCheckboxValue($("#ifmmSmsConsent"),$("#ifmmSmsConsentNy"));
+		form.attr("action",goUrlInst).submit();
+	
+	}else{
+		//update
+		if(vaildationUpdt()==false) return false;
+		form.attr("action",goUrlUpdt).submit();
+	
+	}
+	
+	
+	
+});
+
+setCheckboxValue = function(obj,targetObj){
+	if(ong.is(":checked")){
+		targetObj.val("1");
+	}else{
+		targetObj.val("0");
+	}
+}
+
+
+
+
+</script>
 
 
 	

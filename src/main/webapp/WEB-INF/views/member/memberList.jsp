@@ -155,10 +155,10 @@ th, td {
 		if(!checkNull($("#shOption"), $("#shOption").val() , "코드그룹이름을 입력해 주세요!" )) {
 			return false;			
 		}
-		if(!checkNull($("#shValue"), $("#shValue").val() , "검색어를 입력해 주세요!" )) {
+		/* if(!checkNull($("#shValue"), $("#shValue").val() , "검색어를 입력해 주세요!" )) {
 			return false;			
 		}
-		 
+		  */
 		 
 	/* 	checkNull($("#shValue") , $("#shIfcgName").val() , "null 이다."); */
 		

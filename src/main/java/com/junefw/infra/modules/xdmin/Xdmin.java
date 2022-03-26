@@ -21,8 +21,29 @@ public class Xdmin {
 	private String ifmmGenderCd="";
 	private String ifmmPushConsentNy;
 	private String ifmpNumber;
+	private String ifmmSmsConsentNy;
+	private String ifnaSeq;
+	private String ifmaAddressFull;
 	
 	
+	public String getIfmaAddressFull() {
+		return ifmaAddressFull;
+	}
+	public void setIfmaAddressFull(String ifmaAddressFull) {
+		this.ifmaAddressFull = ifmaAddressFull;
+	}
+	public String getIfnaSeq() {
+		return ifnaSeq;
+	}
+	public void setIfnaSeq(String ifnaSeq) {
+		this.ifnaSeq = ifnaSeq;
+	}
+	public String getIfmmSmsConsentNy() {
+		return ifmmSmsConsentNy;
+	}
+	public void setIfmmSmsConsentNy(String ifmmSmsConsentNy) {
+		this.ifmmSmsConsentNy = ifmmSmsConsentNy;
+	}
 	public String getIfmpNumber() {
 		return ifmpNumber;
 	}

@@ -20,10 +20,15 @@ public class XdminDao {
 
 	private static String namespace = "com.junefw.infra.modules.xdmin.XdminMpp";
 
+	//select
 	public List<Xdmin> selectList(XdminVo vo) {
 		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
-
+	// insert
+	public Xdmin selectOne(XdminVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOne", vo);
+	}
+	
 	public int insert(Xdmin dto) {
 		System.out.println(dto.getIfmeEmailFull());
 		return sqlSession.insert(namespace + ".insert", dto);
@@ -36,18 +41,26 @@ public class XdminDao {
 	public int insertEmail(Xdmin dto) {
 		return sqlSession.insert(namespace+".insertEmail",dto);
 	}
-	public Xdmin selectOne(XdminVo vo) {
-		return sqlSession.selectOne(namespace + ".selectOne", vo);
+	
+	public int insertCountry(Xdmin dto) {
+		return sqlSession.insert(namespace+".insertCountry",dto);
 	}
+	public int insertAddress(Xdmin dto) {
+		return sqlSession.insert(namespace+".insertAddress",dto);
+	}
+	
+
 	public int update(Xdmin dto) {
-		
 		return sqlSession.update(namespace+".update",dto);
 	}
+	
 	public int delete(XdminVo vo) {
-		return sqlSession.delete(namespace+".delete",vo);
+		return sqlSession.update(namespace+ ".delete", vo);
 	}
+	
 	public int selectOneCount(XdminVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
+	
 
 }
