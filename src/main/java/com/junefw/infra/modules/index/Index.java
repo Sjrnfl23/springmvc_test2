@@ -1,8 +1,8 @@
-package com.junefw.infra.modules.member;
+package com.junefw.infra.modules.index;
 
 import java.util.Date;
 
-public class Member {
+public class Index {
 	
 	private String ifmmSeq = "";
 	private String ifmmId = "";
@@ -24,7 +24,6 @@ public class Member {
 	private String ifmpNumber;
 	private Date modDateTime;
 	private Date regDateTimed;
-	
 	
 	private String ifmmDob;
 	

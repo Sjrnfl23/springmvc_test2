@@ -63,17 +63,9 @@ p {
 </head>
 <body>
 
-<form method="post" id="formList" name="formList" action="/infra/xdmin/xdminView">
-
-<input type="hidden" id="ifmmSeq" name="ifmmSeq">
-<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}"/>">
-	
-	<%-- <input type="hidden" id="shIfcgDelNy" name="shIfcgDelNy" value="<c:out value="${vo.shIfcgDelNy}"/>">
-	
-	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
-	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>"> --%>
-
-
+<form id="formList" method="post" action="/infra/xdmin/xdminUpdate">
+	<input type="hidden" id="ifmmSeq" name="ifmmSeq" value="<c:out value="${item.ifmmSeq}"/>">
+<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 
 	<div class="container-fluid">
 		<div class="row">
@@ -123,7 +115,7 @@ p {
 	</div>
 
 	<br>
-		<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
 		<div class="container-fluid">
 			<!-- <a class="navbar-brand" href="#">Navbar</a> -->
 			<button class="navbar-toggler" type="button"
@@ -215,24 +207,24 @@ p {
 		</div>
 
 
-	
+
 
 		<!--   <input type ="hidden" name="ifmmSeq" value="<c:out value="${item.ifmmSeq}"/>"> -->
 		<div class="container-fluid" style="margin: 10px; padding: 20px;">
-	
+
 			<div class="row" style="border-top: 1px solid;">
 				<div class="col-3">
 					<p>이름</p>
 				</div>
 				<div class="col-9">
-					<p><c:out value="${item.ifmmName}"/></p>
+					<p><input type="text" id="ifmmName" name="ifmmName" class="form-control" value="<c:out value="${item.ifmmName}"/>"></p>
 				</div>
 				<div class="col-3">
 
 					<p>아이디</p>
 				</div>
 				<div class="col-9">
-					<p><c:out value="${item.ifmmId}"/></p>
+					<p><input type="text" id="ifmmId" name="ifmmId" class="form-control" value="<c:out value="${item.ifmmId}"/>"></p>
 				</div>
 
 			</div>
@@ -242,7 +234,7 @@ p {
 				</div>
 				<div class="col-9">
 				
-				<p><c:out value="${item.ifmmDob}"/></p>
+				<p><input type="text"  class="form-control" value="<c:out value="${item.ifmmDob}"/>"></p>
 				
 				</div>
 
@@ -253,7 +245,7 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><c:out value="${item.ifmmGender}"/></p>
+				<p><input type="text"  class="form-control" value="<c:out value="${item.ifmmGender}"/>"></p>
 				</div>
 
 			</div>
@@ -264,7 +256,7 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><c:out value="${item.ifnaName}"/></p>
+				<p><input type="text"  class="form-control" value="<c:out value="${item.ifnaName}"/>"></p>
 				</div>
 
 			</div>
@@ -274,7 +266,7 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><c:out value="${item.ifmaAddressFull}"/></p>
+				<p><input type="text"  class="form-control" value="<c:out value="${item.ifmaAddressFull}"/>"></p>
 				</div>
 
 			</div>
@@ -285,7 +277,7 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><c:out value="${item.ifmpPhone}"/></p>
+				<p><input type="text"  class="form-control" value="<c:out value="${item.ifmpPhone}"/>"></p>
 				</div>
 
 			</div>
@@ -295,7 +287,7 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><c:out value="${item.ifmeEmailFull}"/></p>
+				<p><input type="text"  id="ifmeEmailFull" name="ifmeEmailFull" class="form-control" value="<c:out value="${item.ifmeEmailFull}"/>"></p>
 				</div>
 
 			</div>
@@ -307,7 +299,7 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><c:out value="${item.ifjqQuestionName}"/></p>
+				<p><input type="text"  class="form-control" value="<c:out value="${item.ifjqQuestionName}"/>"></p>
 				</div>
 
 			</div>
@@ -318,7 +310,7 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><c:out value="${item.ifjqAnswer}"/></p>
+				<p><input type="text"  class="form-control" value="<c:out value="${item.ifjqAnswer}"/>"></p>
 				</div>
 
 			</div>
@@ -375,23 +367,19 @@ p {
 			</div>
 			
 			
-<a style="float: left; padding: 5px; margin-right:5px;" class="btn btn-primary"
-				id="formback" href="javascript:goList(<c:out value="${item.ifmmSeq}"/>);">
+
+	
+
+	<a style="float: right; padding: 5px; margin-left:5px;" class="btn btn-danger"
+				id="goback" href="javascript:goView(<c:out value="${item.ifmmSeq}"/>);">
 				
 				취소
 			</a>
-		
-
-	<a style="float: right; padding: 5px;" class="btn btn-danger"
-				id="delete" href="/infra/xdmin/userListDele?ifmmSeq=<c:out value="${item.ifmmSeq}"/>">
+			<input type="submit" style="float: right; padding: 5px; " class="btn btn-warning"
+				id="edit" value="수정">
 				
-				삭제
-			</a>
-			<a style="float: right; padding: 5px; margin-right:5px;" class="btn btn-warning"
-				id="formEdit" href="javascript:goEdit(<c:out value="${item.ifmmSeq}"/>);">
 				
-				수정
-			</a>
+			
 			
 		</div>
 
@@ -402,12 +390,12 @@ p {
 
 
 	
-</form>
+
 
 
 	</main>
 	
-
+</form>
 
 </body>
 
@@ -419,7 +407,7 @@ p {
 <script src="/infra/resources/js/vaildation.js"></script>
 <script type="text/javascript">
 
-$("#delete").on("click" , function(){
+/* $("#delete").on("click" , function(){
 	var answer = confirm("삭제 하시겠습니까?");
 	
 	if(answer){
@@ -427,7 +415,7 @@ $("#delete").on("click" , function(){
 	}else{
 		return false;
 	}
-});
+}); */
 
 goEdit = function(seq){
 	
@@ -439,7 +427,6 @@ goEdit = function(seq){
 goForm = function(seq){
 	
 	$("#ifmmSeq").val(seq);
-	
 	$("#formList").attr("action","/infra/xdmin/xdminForm");
 	$("#formList").submit();
 
@@ -448,13 +435,6 @@ goView = function(seq){
 	
 	$("#ifmmSeq").val(seq);
 	$("#formList").attr("action","/infra/xdmin/xdminView");
-	$("#formList").submit();
-
-}
-goList = function(seq){
-	
-	$("#ifmmSeq").val(seq);
-	$("#formList").attr("action","/infra/xdmin/xdminList");
 	$("#formList").submit();
 
 }

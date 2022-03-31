@@ -41,6 +41,7 @@
 			 ifmmId
 			,ifmmName
 			,ifmmGenderCd
+			,ifmmDob
 			,ifmmDelNy
 			
 		) values (
@@ -48,6 +49,10 @@
 			#{ifmmId}
 			,#{ifmmName}
 			,#{ifmmGenderCd}
+			<choose>
+				<when test="ifmmDob.equals('')">,NULL</when>
+				<otherwise>,#{ifmmDob}</otherwise>
+			</choose>
 			,0
 		)
 			<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
@@ -155,6 +160,15 @@
 	
 	</delete>
 	
+	<select id="selectOneLogin" resultMap="resultMapObj">
+	select
+		ifmmName
+		,ifmmSeq
+		,ifmmId
+		
+	from infrMember
+		where ifmmId=#{ifmmId} and ifmmPassword=#{ifmmPassword}
+	</select>
 	
 
 </mapper>

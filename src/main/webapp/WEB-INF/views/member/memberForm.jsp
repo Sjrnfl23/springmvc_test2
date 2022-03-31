@@ -89,13 +89,13 @@ th,td {
 		<tr>
 			<td>	<div class="row g-3 align-items-center">
   <div class="col-auto">
-    <label for="inputPassword6" class="col-form-label">비밀번호</label>
+    <label for="ifmmPassword" class="col-form-label">비밀번호</label>
   </div></div></td>
 			<td>
 			
 			
   <div class="col-auto">
-    <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+    <input type="password" id="ifmmPassword" class="form-control" aria-describedby="passwordHelpInline">
   </div>
   <div class="col-auto">
     <span id="passwordHelpInline" class="form-text">
@@ -118,7 +118,7 @@ th,td {
 		<tr>
 			<td>생일</td>
 			<td>
-				<input type="date" id="date" name="date" value="1999-06-05"></td>
+				<input type="date" id="ifmmDob" name="ifmmDob" value="1999-06-05"></td>
 			<td>국적</td>
 			<td>
 				<input type="text" id="country" name="country" placeholder="국적"></td>
@@ -439,9 +439,10 @@ th,td {
 
 $("#btnSubmit").on("click",function(){
 	
-	if(!checkNull(${"#ifmmName"} , ${"#ifmmName"}.val() , "이름 체크!")){
+	if(!checkNull($("#ifmmName") , $("#ifmmName").val() , "이름 체크!")){
 		return false;
 	}
+	if(!checkPasswordSame($("#ifmmPassword"),$("#ifmmPassword").val(),"비밀번호가 서로 다릅니다"))
 	
 });	
 

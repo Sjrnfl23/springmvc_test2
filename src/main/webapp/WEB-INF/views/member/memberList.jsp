@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
@@ -176,6 +177,8 @@ th, td {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="/infra/resources/js/vaildation.js"></script>
+
+
 
 </body>
 </html>

@@ -19,35 +19,56 @@ public class XdminServiceImpl implements XdminService{
 	public int insert(Xdmin dto) throws Exception{
 		dao.insert(dto);
 		dao.insertEmail(dto);
-		dao.insertPhone(dto);
+		
 		dao.insertAddress(dto);
 		dao.insertCountry(dto);
+	
+		dao.insertMobile(dto);
+		dao.insertPhone(dto);
+		dao.insertFax(dto);
 		return 1;
 	}
 	public Xdmin selectOne(XdminVo vo) throws Exception{
 		return dao.selectOne(vo);
 	}
-	public int update(Xdmin dto) throws Exception{
-		return dao.update(dto);
+	public int updateMember(Xdmin dto) throws Exception{
+		return dao.updateMember(dto);
 	}
 	public int delete(XdminVo vo) throws Exception{
 		return dao.delete(vo);
 	}
 	
-	@Override
-	public int insertEmail(Xdmin dto) {
-		
-		return dao.insertEmail(dto);
-	}
 	
-	@Override
-	public int insertPhone(Xdmin dto) {
-		
-		return dao.insertPhone(dto);
-	}
+	/*
+	 * public int insertEmail(Xdmin dto) {
+	 * 
+	 * return dao.insertEmail(dto); }
+	 * 
+	 * 
+	 * public int insertPhone(Xdmin dto) {
+	 * 
+	 * return dao.insertPhone(dto); } public int insertMobile(Xdmin dto) {
+	 * 
+	 * return dao.insertPhone(dto); } public int insertFax(Xdmin dto) {
+	 * 
+	 * return dao.insertPhone(dto); }
+	 */
+	
 	@Override
 	public int selectOneCount(XdminVo vo) {
 		// TODO Auto-generated method stub
 		return dao.selectOneCount(vo);
+	}
+	
+	// book
+	
+	@Override
+	public List<Xdmin> selectBookList(XdminVo vo) throws Exception {
+		
+		return dao.selectBookList(vo);
+	}
+	
+	public int selectOneCount2(XdminVo vo) {
+		return dao.selectOneCount2(vo);
 	}
 }

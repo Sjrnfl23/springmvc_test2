@@ -39,25 +39,28 @@ label {
  
 	<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Navbar</a>
+			<!-- <a class="navbar-brand" href="#">Navbar</a> -->
 			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false"
+				data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+				aria-controls="navbarNavDropdown" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav" style="margin-left:30px;">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Features</a>
+						aria-current="page" href="/infra/xdmin/xdminList">관리 페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/infra/xdmin/xdminList" style="margin-left:10px;">회원 페이지</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
+				<!-- 	<li class="nav-item"><a class="nav-link" href="/infra/book/bookList" style="margin-left:10px;">책 리스트</a>
+					</li> -->
+					<!-- <li class="nav-item"><a class="nav-link" href="/infra/book/bookRegister" style="margin-left:10px;">책 등록</a>
 					</li>
-
+					<li class="nav-item"><a class="nav-link" href="/infra/book/bookPayment" style="margin-left:10px;">결제 페이지</a>
+					</li> -->
 				</ul>
+
 			</div>
-			
 		</div>
 	</nav>
 	
@@ -131,14 +134,20 @@ label {
 
 	<div class="container-fluid">
 	
-<form action="xdminInst" method="get">
+<form action="xdminInst" id="formList" name="" method="get">
+<input type="hidden" id="ifmmSeq" name="ifmmSeq">
 
-		<div>
-	
-		<br>
-		<div class="h2">&nbsp회원가입</div>
-		<!-- <div style="float: right;">*항목은 필수입니다.</div> -->
-	
+		<div class="row">
+		
+	<div class="col-5">
+		
+		
+		
+		
+		</div>
+		<div class="col-7">
+		<h2 style="margin-top:6px; margin-left:50px;">&nbsp회원가입</h2>
+		</div>
 	</div>
 <br> 
 		<div class="row">
@@ -163,7 +172,7 @@ label {
 				<label for="ifmmPassword">비밀번호</label>
 				<div class="input-group mb-3">
 
-					<input type="password" class="form-control" id="pwd" name="ifmmPassword"
+					<input type="password" class="form-control" id="ifmmPassword" name="ifmmPassword"
 						placeholder="비밀번호" >
 				</div>
 			</div>
@@ -184,7 +193,7 @@ label {
 				<label for="name">이름</label>
 				<div class="input-group mb-3">
 
-					<input type="text" class="form-control" id="name" name="ifmmName"
+					<input type="text" class="form-control" id="ifmmName" name="ifmmName"
 						placeholder="이름">
 				</div>
 
@@ -193,8 +202,8 @@ label {
 			<div class="col-6">
 				<label for="name_eng">이름(영문)</label>
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" id="name_eng"
-						name="name_eng"placeholder="이름(영문)">
+					<input type="text" class="form-control" id="ifmmNameEng"
+						name="ifmmNameEng" placeholder="이름(영문)">
 				</div>
 
 			</div>
@@ -206,7 +215,7 @@ label {
 			<div class="col-6">
 				<label for="gender">성별</label>
 	<select class="form-select" id="ifmmGenderCd" name="ifmmGenderCd" aria-label="gender">
-						<option value="5" selected >::선택::</option>
+						<option value="0" selected >::선택::</option>
 						<option value="5">남자</option>
 						<option value="4">여자</option>
 						<option value="6">기타</option>
@@ -218,8 +227,8 @@ label {
 		<div class="col-6">
 			<label for="birthday">생일</label>
 			<div class="input-group mb-3">
-				<input type="date" class="form-control" id="birthday"
-					name="brithday" >
+				<input type="date" class="form-control" id="ifmmDob"
+					name="ifmmDob" >
 			</div>
 
 		</div>
@@ -252,13 +261,14 @@ label {
 	<div class="row">
 			<div class="col-6">
 				<label for="gender">핸드폰</label>
-	<input class="form-control" type="text" id="gender" name="gender" aria-label="gender" placeholder="핸드폰">
+	<input class="form-control" type="text" id="ifmpMobile" name="ifmpMobile" aria-label="gender" placeholder="핸드폰">
 						
 			</div>
 
 	
 
 		<div class="col-2">
+		
 			<label for="birthday">핸드폰 정보 마케팅 사용 동의</label>
 			<div class="input-group mb-3">
 				<input type="radio" class="btn-check" name="ifmmSmsConsentNy" id="ifmmSmsConsentNy" value="1" checked>
@@ -292,7 +302,7 @@ label {
 				<label for="name">전화번호</label>
 				<div class="input-group mb-3">
 
-					<input type="text" class="form-control" id="name" name="name"
+					<input type="text" class="form-control" id="ifmpPhone" name="ifmpPhone"
 						 placeholder="전화번호">
 				</div>
 
@@ -301,8 +311,8 @@ label {
 			<div class="col-6">
 				<label for="name_eng">팩스번호</label>
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" id="name_eng"
-						name="name_eng" placeholder="팩스번호">
+					<input type="text" class="form-control" id="ifmpFax"
+						name="ifmpFax" placeholder="팩스번호">
 				</div>
 
 			</div>
@@ -312,11 +322,11 @@ label {
 		<div class="row">
 
 			<div class="col-6">
-				<label for="name">거주국가</label>
+				<label for="name">국적</label>
 				<div class="input-group mb-3">
 
 					<select class="form-select" id="ifnaSeq" name="ifnaSeq" aria-label="gender">
-						<option selected>::선택::</option>
+						<option  value="0" selected>::선택::</option>
 						<option value="3">대한민국</option>
 						<option value="2">미국</option>
 						<option value="4">일본</option>
@@ -356,13 +366,19 @@ label {
     </div>
 		
 		</div>
-			<div class="col-6">
+		 	<div class="col-6">
 				<label for="desc">설명</label>
 				<div class="input-group mb-3">
 					<textarea class="form-control"id="desc" rows="4"></textarea>
 				</div>
 
-			</div>
+		
+			</div> 
+		<%--  <div class="col-sm-6 mt-3 mt-sm-0">
+            <label for="ifmmDesc" class="form-label">설명</label>
+            <p>${fn:replace(item.ifmmDesc, br, '<br/>')}</p>
+            <p><c:out value="${fn:replace(item.ifmmDesc, br, '<br/>')}" escapeXml = "false"/></p>
+        </div> --%>
 		
 		
 	</div>
@@ -412,10 +428,17 @@ label {
 	<div style="float:right;">
 	
 	
-	<input type="submit" class="btn btn-primary" value="등록">
+	<input type="submit" id="btnSubmit" class="btn btn-primary" value="등록">
 	
 
 	
+	</div>
+	<div style="float:left">
+	<a style="float:left;" class="btn btn-primary"
+				id="formback" href="javascript:goList(<c:out value="${item.ifmmSeq}"/>);">
+				
+				취소
+			</a>
 	</div>
 		</form>
 	</div>
@@ -485,7 +508,69 @@ label {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
+		<script src="/infra/resources/js/vaildation.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>	
+<script type="text/javascript">
 
+goList = function(seq){
+	
+	$("#ifmmSeq").val(seq);
+	$("#formList").attr("action","/infra/xdmin/xdminList");
+	$("#formList").submit();
+
+}
+
+
+$("#btnSubmit").on("click",function(){
+	
+	if(!checkNull($("#ifmmId") , $("#ifmmId").val() , "Id를 입력해 주세요")){
+		return false;
+	}
+	if(!checkNull($("#ifmmPassword") , $("#ifmmPassword").val() , "비밀번호를 입력해 주세요")){
+		return false;
+	}
+	if(!checkNull($("#pwd_check") , $("#pwd_check").val() , "비밀번호 확인을 입력해 주세요")){
+		return false;
+	}
+	/* 
+	 if(!checkPasswordSame($("#ifmmPassword"), $("#ifmmPassword").val(), $("#pwd_check").val(), "비밀번호가 서로 다릅니다")){
+		return false;
+	} */ 
+	
+	if(!checkNull($("#ifmmName") , $("#ifmmName").val() , "이름을 입력해 주세요")){
+		return false;
+	}
+
+	
+
+	if(!checkNull($("#ifmmDob") , $("#ifmmDob").val() , "생년월일을 입력해 주세요")){
+		return false;
+	}
+	
+	
+	
+	
+	if( $("#ifmmGenderCd").val() == 0){
+		alert("성별을 선택해 주세요");
+		$("#ifmmGenderCd").focus();
+		return false;
+	}else{
+		
+	}
+	
+	if($("#ifnaSeq").val()== 0){
+		alert("국적을 선택해 주세요");
+		$("#ifnaSeq").focus();
+		return false;
+	}else{
+		
+	}
+	
+
+	
+})
+
+</script>
 
 </body>
 </html>

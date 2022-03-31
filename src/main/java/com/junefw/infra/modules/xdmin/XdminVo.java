@@ -1,5 +1,7 @@
 package com.junefw.infra.modules.xdmin;
 
+import java.util.Date;
+
 public class XdminVo {
 	private String ifmmSeq;
 	private String shIfmmDelNy;
@@ -8,7 +10,7 @@ public class XdminVo {
 	private String shValue;
 //	paging
 	private int thisPage = 1;									// 현재 페이지
-	private int rowNumToShow = 5;								// 화면에 보여줄 데이터 줄 갯수
+	private int rowNumToShow = 10;								// 화면에 보여줄 데이터 줄 갯수
 	private int pageNumToShow = 5;								// 화면에 보여줄 페이징 번호 갯수
 
 	private int totalRows;										// 전체 데이터 갯수
@@ -20,7 +22,17 @@ public class XdminVo {
 	private int endRnumForOracle;								// 쿼리 끝 row
 	private Integer RNUM;
 	
-	private int startRnumForMysql = 0;	
+	
+	private int startRnumForMysql = 0;
+	
+	
+	private String[] CheckboxSeqArray;
+	
+	
+	// Date
+		private String shDateStart;
+		private String shDateEnd;
+		private String shOptionDate;
 	
 	 public void setParamsPaging(int totalRowsParam) {
 		
@@ -68,7 +80,75 @@ public class XdminVo {
 		}
 	 
 	 
-	 
+
+	public String[] getCheckboxSeqArray() {
+		return CheckboxSeqArray;
+	}
+
+
+
+	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
+		CheckboxSeqArray = checkboxSeqArray;
+	}
+
+	public String getShOptionDate() {
+		return shOptionDate;
+	}
+
+
+	public void setShOptionDate(String shOptionDate) {
+		this.shOptionDate = shOptionDate;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public String getShDateStart() {
+		return shDateStart;
+	}
+
+
+
+
+
+
+
+	public void setShDateStart(String shDateStart) {
+		this.shDateStart = shDateStart;
+	}
+
+
+
+
+
+
+
+	public String getShDateEnd() {
+		return shDateEnd;
+	}
+
+
+
+
+
+
+
+	public void setShDateEnd(String shDateEnd) {
+		this.shDateEnd = shDateEnd;
+	}
+
+
+
 
 
 
@@ -78,18 +158,9 @@ public class XdminVo {
 	}
 
 
-
-
-
-
-
 	public void setShIfmmDelNy(String shIfmmDelNy) {
 		this.shIfmmDelNy = shIfmmDelNy;
 	}
-
-
-
-
 
 
 

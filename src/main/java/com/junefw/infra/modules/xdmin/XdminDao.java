@@ -49,9 +49,16 @@ public class XdminDao {
 		return sqlSession.insert(namespace+".insertAddress",dto);
 	}
 	
+	public int insertMobile(Xdmin dto) {
+		return sqlSession.insert(namespace+".insertMobile",dto);
+	}
+	public int insertFax(Xdmin dto) {
+		return sqlSession.insert(namespace+".insertFax",dto);
+	}
+	
 
-	public int update(Xdmin dto) {
-		return sqlSession.update(namespace+".update",dto);
+	public int updateMember(Xdmin dto) {
+		return sqlSession.update(namespace+".updateMember",dto);
 	}
 	
 	public int delete(XdminVo vo) {
@@ -62,5 +69,14 @@ public class XdminDao {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 	
+	//book
+	
+	public List<Xdmin> selectBookList(XdminVo vo) {
+		return sqlSession.selectList(namespace + ".selectBookList", vo);
+	}
+	
+	public int selectOneCount2(XdminVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount2", vo);
+	}
 
 }

@@ -17,6 +17,13 @@
 					<when test="shOption == 2"> and a.ifmmId LIKE concat('%', #{shValue} ,'%') </when>
 					<when test="shOption == 3"> and d.ifnaName LIKE concat('%', #{shValue} ,'%') </when>		
 					 </choose>
+					 
+					 <choose>
+			
+					 <when test="shOptionDate == 1 and shDateStart != null and !shDateStart.equals('')"> and  a.regDateTime between #{shDateStart} and #{shDateEnd} </when>
+					
+					 </choose>
+					 
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
@@ -29,6 +36,7 @@
 				,c.ifmeEmailFull
 				,d.ifnaName
 				,a.ifmmPushConsentNy
+				,a.regDateTime
 				from
 				infrMember a
 			left join infrmemberphone b on b.ifmmseq=a.ifmmseq and b.ifmpDefaultNy = 1
@@ -39,8 +47,10 @@
 			where 
 				1=1
 				and ifmmDelNy=0
-
-				<include refid="sqlCommon"/>
+			
+			
+				
+					<include refid="sqlCommon"/>
 			 limit #{startRnumForMysql},#{rowNumToShow}
 			 
 			 
@@ -51,21 +61,25 @@
 			insert into infrMember(
 			 ifmmId
 			,ifmmName
+			,ifmmPassword
+			,ifmmNameEng
 			,ifmmGenderCd
 			,ifmmDob
 			,ifmmSmsConsentNy
 			,ifmmDelNy
-			
+			,regDateTime
 			
 		) values (
 			
 			#{ifmmId}
 			,#{ifmmName}
+			,#{ifmmPassword}
+			,#{ifmmNameEng}
 			,#{ifmmGenderCd}
 			,#{ifmmDob}
 			,#{ifmmSmsConsentNy}
 			,0
-			
+			,now()
 		)
 			<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 	SELECT last_insert_id()
@@ -73,22 +87,7 @@
 				
 	</insert>
 	
-	<insert id="insertPhone">
-			insert into infrMemberPhone(
-			
-			ifmpNumber
-			,ifmpDelNy
-			,ifmmSeq
-			,ifmpDefaultNy
-		) values (
-			
-			#{ifmpNumber}
-			,0
-			,#{ifmmSeq}
-			,1
-		)
 	
-	</insert>
 	
 	<insert id="insertEmail">
 			insert into infrMemberEmail(
@@ -144,6 +143,63 @@
 	
 	</insert>
 	
+	<insert id="insertMobile">
+		insert into infrMemberPhone(
+			ifmpTypeCd
+			,ifmpDeviceCd
+			,ifmpNumber 
+			,ifmpDelNy
+			,ifmmSeq
+			,ifmpDefaultNy
+		) values (
+			19
+			,26
+			,#{ifmpMobile}
+			,0
+			,#{ifmmSeq}
+			,1
+		)
+	
+	</insert>
+	
+	<insert id="insertFax">
+		insert into infrMemberPhone(
+			ifmpTypeCd
+			,ifmpDeviceCd
+			,ifmpNumber 
+			,ifmpDelNy
+			,ifmmSeq
+			,ifmpDefaultNy
+		) values (
+			19
+			,27
+			,#{ifmpFax}
+			,0
+			,#{ifmmSeq}
+			,1
+		)
+	
+	</insert>
+	
+	<insert id="insertPhone">
+		insert into infrMemberPhone(
+			ifmpTypeCd
+			,ifmpDeviceCd
+			,ifmpNumber 
+			,ifmpDelNy
+			,ifmmSeq
+			,ifmpDefaultNy
+		) values (
+			19
+			,25
+			,#{ifmpPhone}
+			,0
+			,#{ifmmSeq}
+			,1
+		)
+	
+	</insert>
+	
 	<select id="selectOneCount" resultType="Integer">
 	select
 		count(*)
@@ -152,6 +208,17 @@
 		
 		where 1=1
 		<include refid="sqlCommon"/>
+		
+	</select>
+	
+	<select id="selectOneCount2" resultType="Integer">
+	
+	select
+		count(*)
+	from
+		prjBookInfo a
+		
+		where 1=1
 	</select>
 	
 <select id="selectOne" resultMap="resultMapObj">
@@ -159,7 +226,7 @@
 				a.ifmmSeq
 				, a.ifmmName
 				, a.ifmmId
-				, concat(substring(b.ifmpNumber,1,3),"-",substring(b.ifmpNumber,4,4),"-",substring(b.ifmpNumber,7,4)) as ifmmPhone
+				, concat(substring(b.ifmpNumber,1,3),"-",substring(b.ifmpNumber,4,4),"-",substring(b.ifmpNumber,7,4)) as ifmpPhone
 				,(select ifcdName from infrcode where ifmmGenderCd=ifcdseq) as ifmmGender
 				,c.ifmeEmailFull
 				,a.ifmmPassword
@@ -198,5 +265,86 @@
 	where ifmmSeq=#{ifmmSeq} 
 	
 	</update>
+	
+	<update id="updateMember">
+	update 
+		infrmember a, infrMemberEmail b, infrmembernationalty c
+	set 
+				
+				 a.ifmmName = #{ifmmName}
+				, a.ifmmId = #{ifmmId}
+				<!--,a.ifmmDob = #{ifmmDob}-->
+				<!--,a.ifmmGenderCd=#{ifmmGenderCd}
+				,c.ifnaSeq=#{ifnaSeq}-->
+				,b.ifmeEmailFull = #{ifmeEmailFull}
+				
+			       
+	where 
+		a.ifmmSeq= #{ifmmSeq} 
+		and b.ifmmSeq=#{ifmmSeq}  
+		
+	
+	</update>
+	
+	
+	<!--책 -->
+	
+		<select id="selectBookList" resultMap="resultMapObj">
+	 select
+				a.prjSeq
+				, a.prjTitle
+				,b.pjbcName 
+				,(select pjbcName from prjBookCategory where a.prjBookCategoryCd = pjbcSeq ) as bookCategory
+				
+				,a.prjPublisher
+				,a.prjPrice
+				
+				from
+				prjBookInfo a
+			left join prjBookCreater b on b.prjSeq=a.prjSeq and b.pjbcDefaultNy = 1
+			
+		
+			
+			where 
+				1=1
+				and prjDelNy=0
+		<choose>
+			<when test="shIfmmDelNy == 1">AND a.prjDelNy = 1</when>
+			<when test="shIfmmDelNy == 0">AND a.prjDelNy = 0</when>
+		</choose>
+		
+				 <choose>
+					 <when test="shOption == 1"> and a.prjTitle LIKE concat('%', #{shValue} ,'%') </when>
+					<when test="shOption == 2"> and b.pjbcName LIKE concat('%', #{shValue} ,'%') </when>
+					<when test="shOption == 3"> and a.prjPublisher LIKE concat('%', #{shValue} ,'%') </when>		
+					 </choose>
+				
+			 limit #{startRnumForMysql},#{rowNumToShow}
+			 
+			 
+	
+	</select>
+	
+	
+	
+	<!--<insert id="insertBookInfo">
+			insert into prjBookInfo(
+			
+			ifmaAddress1
+			,ifmaAddress2
+			,ifmaAddressFull
+			,ifmaDelNy
+			,ifmmSeq
+			,ifmaDefaultNy
+		) values (
+			#{ifmaAddress1}
+			,#{ifmaAddress2}
+			,concat(#{ifmaAddress1},#{ifmaAddress2} )
+			,0
+			,#{ifmmSeq}
+			,1
+		)
+	
+	</insert>-->
 	
 </mapper>

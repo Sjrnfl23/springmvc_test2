@@ -1,8 +1,8 @@
-package com.junefw.infra.modules.member;
+package com.junefw.infra.modules.index;
 
 import java.util.Date;
 
-public class MemberVo {
+public class IndexVo {
 	private String ifmmSeq;
 	private String shValue;
 	private String shOption;

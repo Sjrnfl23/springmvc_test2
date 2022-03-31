@@ -24,8 +24,54 @@ public class Xdmin {
 	private String ifmmSmsConsentNy;
 	private String ifnaSeq;
 	private String ifmaAddressFull;
+	private String ifmmEmailConsentNy;
+	private String ifmmNameEng;
+	private String ifmpMobile;
+	private String ifmpFax;
+	
+	//book
+	private String prjSeq;
+	private String prjTitle;
+	private String pjbcName;
+	private String bookCategory;
+	private String prjPublisher;
+	private String prjPrice;
+	
+	//
+	private String regDateTime;
 	
 	
+	
+	public String getIfmpMobile() {
+		return ifmpMobile;
+	}
+	public void setIfmpMobile(String ifmpMobile) {
+		this.ifmpMobile = ifmpMobile;
+	}
+	public String getIfmpFax() {
+		return ifmpFax;
+	}
+	public void setIfmpFax(String ifmpFax) {
+		this.ifmpFax = ifmpFax;
+	}
+	public String getIfmmNameEng() {
+		return ifmmNameEng;
+	}
+	public void setIfmmNameEng(String ifmmNameEng) {
+		this.ifmmNameEng = ifmmNameEng;
+	}
+	public String getRegDateTime() {
+		return regDateTime;
+	}
+	public void setRegDateTime(String regDateTime) {
+		this.regDateTime = regDateTime;
+	}
+	public String getIfmmEmailConsentNy() {
+		return ifmmEmailConsentNy;
+	}
+	public void setIfmmEmailConsentNy(String ifmmEmailConsentNy) {
+		this.ifmmEmailConsentNy = ifmmEmailConsentNy;
+	}
 	public String getIfmaAddressFull() {
 		return ifmaAddressFull;
 	}
@@ -164,5 +210,48 @@ public class Xdmin {
 	public void setIfmaAddress2(String ifmaAddress2) {
 		this.ifmaAddress2 = ifmaAddress2;
 	}
+
+	
+	//book
+	
+	
+	public String getPrjSeq() {
+		return prjSeq;
+	}
+	public void setPrjSeq(String prjSeq) {
+		this.prjSeq = prjSeq;
+	}
+	public String getPrjTitle() {
+		return prjTitle;
+	}
+	public void setPrjTitle(String prjTitle) {
+		this.prjTitle = prjTitle;
+	}
+	public String getPjbcName() {
+		return pjbcName;
+	}
+	public void setPjbcName(String pjbcName) {
+		this.pjbcName = pjbcName;
+	}
+	public String getBookCategory() {
+		return bookCategory;
+	}
+	public void setBookCategory(String bookCategory) {
+		this.bookCategory = bookCategory;
+	}
+	public String getPrjPublisher() {
+		return prjPublisher;
+	}
+	public void setPrjPublisher(String prjPublisher) {
+		this.prjPublisher = prjPublisher;
+	}
+	public String getPrjPrice() {
+		return prjPrice;
+	}
+	public void setPrjPrice(String prjPrice) {
+		this.prjPrice = prjPrice;
+	}
+	
+	
 
 }

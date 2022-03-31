@@ -11,6 +11,17 @@ checkNull = function (obj, value, message) {
 	}
 }
 
+checkPasswordSame = function (obj1, value1, value2, message) {
+	if(value1 != value2 ){
+		alert(message);
+		obj1.focus();
+		return false;
+	} else {
+		return true;
+	}
+}
+
+
 
 checkOnlyNumber = function(obj, value, message) {
     var regExp = /^[0-9]+$/;

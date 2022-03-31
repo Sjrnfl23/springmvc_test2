@@ -50,6 +50,9 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return dao.insertPhone(dto);
 	}
+	public Member selectOneLogin(Member dto) {
+		return dao.selectOneLogin(dto);
+	}
 	
 	
 }

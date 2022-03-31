@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
-<jsp:useBean id="CodeServiceImpl" class="com.junefw.infra.modules.code.CodeServiceImpl"/>
+
 <!doctype html>
 
 <html lang="en">
@@ -88,21 +88,19 @@ text-decoration:none;
 				</div>
 				
 				
-	<span class="dropdown d-none d-sm-block"
-					style="float: right; margin-right: 15px;"> <a href="#"
-					class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-					id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-						<img src="https://github.com/mdo.png" alt="" width="32"
-						height="32" class="rounded-circle me-2"> <strong>Manager</strong>
-				</a>
-
-					<ul class="dropdown-menu text-small shadow"
-						aria-labelledby="dropdownUser2">
-					
-					
-						<li><a class="dropdown-item" href="#">로그아웃</a></li>
-					</ul>
-				</span>
+ <span class="dropdown d-none d-sm-block" style="float:right; margin-right:15px;">
+      <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>Manager</strong>
+      </a>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </span>
 
 			</div>
 			
@@ -111,7 +109,7 @@ text-decoration:none;
 	</div>
 
 	<br>
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
+		<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
 		<div class="container-fluid">
 			<!-- <a class="navbar-brand" href="#">Navbar</a> -->
 			<button class="navbar-toggler" type="button"
@@ -124,33 +122,23 @@ text-decoration:none;
 				<ul class="navbar-nav" style="margin-left:30px;">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/infra/xdmin/xdminList">관리 페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="/infra/xdmin/xdminList" style="margin-left:10px;">회원 페이지</a>
+					<li class="nav-item"><a class="nav-link" href="/infra/book/bookList" style="margin-left:10px;">책 리스트</a>
 					</li>
-				<!-- 	<li class="nav-item"><a class="nav-link" href="/infra/book/bookList" style="margin-left:10px;">책 리스트</a>
-					</li> -->
-					<!-- <li class="nav-item"><a class="nav-link" href="/infra/book/bookRegister" style="margin-left:10px;">책 등록</a>
+					<li class="nav-item"><a class="nav-link" href="/infra/book/bookRegister" style="margin-left:10px;">책 등록</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="/infra/book/bookPayment" style="margin-left:10px;">결제 페이지</a>
-					</li> -->
+					</li>
 				</ul>
 
 			</div>
 		</div>
 	</nav>
 	<br>
-	
-	<form action="/infra/xdmin/xdminList" method="post" id="formList" name="formList" >
-<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
-	<input type="hidden" id="ifmmSeq" name="ifmmSeq">
-	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
-	<input type="hidden" name="checkboxSeqArray">
-	
-	
-	<%-- <input type="hidden" id="shIfcgDelNy" name="shIfcgDelNy" value="<c:out value="${vo.shIfcgDelNy}"/>"> --%>
-
-<%-- 	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
-	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>"> --%>
-	
+	<p class="margin">Code</p>
+	<form action="/infra/book/bookList" method="post" id="formList" name="formList" >
+			<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+	<input type="hidden" id="prjSeq" name="prjSeq">
+		
 		<div class="container-fluid"
 			style="border: 1px solid gray; margin: 20px; padding: 30px;">
 			<!-- 마진이 왼쪽만 적용됨(??) -->
@@ -163,34 +151,13 @@ text-decoration:none;
 						
 					</select>
 				</div>
-				<div class="col-md-2 col-6">
-					<select class="form-select" aria-label="Default select example" id="shOptionDate" name="shOptionDate">
-						<option value="1" selected >날짜</option>
-						<option value="2">등록일</option>
-						<option value="3">2</option>
-						<option value="4">Three</option>
-					</select>
-				</div>
 				
-				<div class="col-md-2 col-6">
-				<%-- <fmt:parseDate var="shDateStart" value="${vo.shDateStart }" pattern="yyyy-MM-dd HH:mm:ss"/>
-            <input type="date" id="shDateStart" name="shDateStart" value="<fmt:formatDate value="${shDateStart }" pattern="yyyy-MM-dd"/>" placeholder="시작일" class="form-control form-control-sm" autocomplete="off"> --%>
-					 <input type="date" class="form-control" id="shDateStart" name="shDateStart" value="<c:out value="${vo.shDateStart}"/>"> 
-				</div>	
-				~
-				<div class="col-md-2 col-6">
-			
-					<input type="date" class="form-control" id="shDateEnd" name="shDateEnd" value="<c:out value="${vo.shDateEnd}"/>">
-				</div>
-			</div>
-			<br>
-			<div class="row">
 				<div class="col-md-2 col-6">
 					<select class="form-select" id="shOption" name="shOption"aria-label="Default select example">
 						<option value="1" selected>검색구분</option>
 						<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>이름</option>
-						<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>ID</option>
-						<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>국적</option>
+						<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>작가</option>
+						<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>출판사</option>
 					</select>
 				</div>
 
@@ -209,8 +176,13 @@ text-decoration:none;
 						
 					</button>
 				</div>
-
+				
 			</div>
+			<br>
+			
+				
+
+			
 
 		</div>
 		
@@ -230,11 +202,7 @@ text-decoration:none;
 		   <colgroup>
 		  <col style="width:2%">
 		  </colgroup> 
-		  	
-		  	<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('2') }"/>
 		  	<c:choose>
-		  	
-		  	
 	<c:when test="${fn:length(list) eq 0}">
 		<tr>
 			<td class="text-center" colspan="9">There is no data!</td>
@@ -246,17 +214,16 @@ text-decoration:none;
 			<thead class="table-dark">
 			
 				<tr>
-					<th><input type="checkbox" id="checkboxAll" name="checkboxAll"
+					<th><input type="checkbox" id="check" name="check"
 						class="form-check-input"></th>
 					
 					<th>#</th>
-					<th>Name</th>
-					<th>Age</th>
-					<th>Country</th>
-					<th>Gender</th>
-					<th>Phone</th>
-					<th>Email</th>
-					<th>RegisterDate</th>
+					<th>책이름</th>
+					<th>카테고리</th>
+					<th>작가</th>
+					<th>출판사</th>
+					<th>가격</th>
+					
 				</tr>
 				
 			</thead>
@@ -273,42 +240,16 @@ text-decoration:none;
 		<tr>
 		
 		
-				<td><input type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${item.ifmmSeq}"/>"  
+				<td><input type="checkbox" id="check" name="check"
 					class="form-check-input"></td>
-				<td><c:out value="${item.ifmmSeq}"/></td>
-				<td><a href="javascript:goView(<c:out value="${item.ifmmSeq}"/>);"><c:out value="${item.ifmmName}"/></a></td>
-				<td><c:out value="${item.ifmmDob}"/></td>
-				<td><c:out value="${item.ifnaName}"/></td>
-				<td>
-				 <%-- <c:out value="${item.ifmmGender}"/>  --%>
-		 <c:forEach items="${listCodeGender}" var="itemGender" varStatus="statusGender">
-			
-			<c:if test="${item.ifmmGenderCd eq itemGender.ifcdSeq}"><c:out value="${itemGender.ifcdName}"/></c:if>
-			
-		</c:forEach> 
-						
-				</td>
+				<td><c:out value="${item.prjSeq}"/></td>
 				
-				<td>
-				<c:out value="${item.ifmpPhone}"/>
-				<%-- <c:set var="numberPhone" value="${item.ifmpPhone}"/>
-                	<c:choose>
-                		<c:when test="${fn:length(numberPhone) eq 10 }">
-							<c:out value="${fn:substring(numberPhone,0,3)}"/>
-							- <c:out value="${fn:substring(numberPhone,3,6)}"/>
-							- <c:out value="${fn:substring(numberPhone,6,10)}"/>
-                		</c:when>
-                		<c:otherwise>
-							<c:out value="${fn:substring(numberPhone,0,3)}"/>
-							- <c:out value="${fn:substring(numberPhone,3,7)}"/>
-							- <c:out value="${fn:substring(numberPhone,7,11)}"/>
-                		</c:otherwise>
-               		</c:choose> --%>
-				  </td>
+				<td><a href="/infra/book/bookInfo?prjSeq=<c:out value="${item.prjSeq}"/>&thisPage=${vo.thisPage}"><c:out value="${item.prjTitle}"/></a></td>
+				<td><c:out value="${item.bookCategory}"/></td>
+				<td><c:out value="${item.pjbcName}"/></td>
+				<td><c:out value="${item.prjPublisher}"/></td>
+				<td><c:out value="${item.prjPrice}"/></td>
 				
-				<td><c:out value="${item.ifmeEmailFull}"/></td>
-				<%-- <td><c:out value="${item.ifmmPushConsentNy}"/></td> --%>
-				<td><c:out value="${item.regDateTime}"/></td>
 				</tr>
 				
 </c:forEach>
@@ -383,12 +324,12 @@ text-decoration:none;
 		
 		<div class="margin">
 			<a style="float: left; padding: 5px;" class="btn btn-success"
-				id="insert" href="xdminForm">
+				id="insert" href="bookRegister">
 				
 				등록
 			</a>
 			<a style="float: right; padding: 5px;" class="btn btn-danger "
-				id="btnModalDelete" name="btnModalDelete" href="#">
+				id="delete" href="#">
 				
 				삭제
 			</a>
@@ -427,8 +368,6 @@ text-decoration:none;
 
 <script type="text/javascript">
 
-var checkboxSeqArray = [];
-
 $("#btnSave").on("click",function(){
 	if(seq.val() == "0"){
 	
@@ -464,55 +403,7 @@ goList = function(seq){
 	$("#formList").submit();
 	
 }
-goView = function(seq){
-	
-	$("#ifmmSeq").val(seq);
-	$("#formList").attr("action","/infra/xdmin/xdminView");
-	$("#formList").submit();
 
-}
-
-$("#checkboxAll").click(function(){
-	if($("#checkboxAll").is(":checked")) $("input[name=checkboxSeq]").prop("checked",true);
-	else $("input[name=checkboxSeq]").prop("checked",false);
-});
-
-$("#btnModalDelete").on("click",function(){
-	
-	
-	$("input[name=checkboxSeq]:checked").each(function() { 
-		checkboxSeqArray.push($(this).val());
-		/* $("[name=checkboxSeqArray]").push($(this).val()); */
-	});
-
-	$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
-						
-	/* $("#formList").attr("action", "infra/xdmin/userLisrDele?ifmmSeq=<c:out value="${item.ifmmSeq}"/>").submit(); */
-	/* $("#formList").attr("action",goUrlMultiDele); */
-	$("#formList").attr("action","/infra/xdmin/userListDele");
-});
-
-/* $("#btnCheck").on("click" , function(){
-	$.ajax({
-		async: true 
-		,cache: false
-		,type: "post"
-		,url: "/infra/member/loginProc"
-		,data : {"ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val()}
-		,success: function(response) {
-			if(response.rt == "success") {
-				location.href = "/infra/index/indexView";
-			} else {
-				alert("회원없음");
-			}
-		}
-		,error : function(jqXHR, textStatus, errorThrown){
-			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-		}
-		
-	});
-	
-}); */
 
 </script>
 
