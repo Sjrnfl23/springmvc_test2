@@ -12,7 +12,7 @@
    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name ="google-signin-client_id" content="1006974412811-cvo1jnoniarbmobi2bsodkts1t66ikjv.apps.googleusercontent.com">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -67,30 +67,7 @@
 				
 			
 			
-				<div style="float:right;" >
-					<select class="form-select" aria-label="Default select example">
-						<option selected>언어</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
-					</select>
 				
-		
-   		
-				
-				</div>
-				
-				
- <span class="dropdown d-none d-sm-block" style="float:right; margin-right:15px; margin-top:12px;">
-      <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>Manager</strong>
-      </a>
-      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-       
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </span>
 
 			</div>
 			
@@ -182,6 +159,19 @@
     
     </div>
     </div>
+    
+      <div class="row content-justify-center">
+    <div class="col-">
+    
+    <div class="d-grid gap-2">
+    
+    
+ <button class="btn btn-warning" type="button" id="GgCustomLogin" name="login1" value="login"> 구글 로그인</button>
+  
+</div>
+    
+    </div>
+    </div>
       <div class="row content-justify-center">
       
       
@@ -202,7 +192,7 @@
     
     </div>
 
-  
+ 
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -240,8 +230,75 @@ $("#btnLogin").on("click" , function(){
 
 
 </script>
+<script> //구글 로그인
 
+//처음 실행하는 함수
+function init() {
+	gapi.load('auth2', function() {
+		gapi.auth2.init();
+		options = new gapi.auth2.SigninOptionsBuilder();
+		options.setPrompt('select_account');
+        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+	})
+}
 
+function onSignIn(googleUser) {
+	var access_token = googleUser.getAuthResponse().access_token
+	$.ajax({
+    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+		/* url: 'https://people.googleapis.com/v1/people/me' */
+        // key에 자신의 API 키를 넣습니다.
+        	/* url : "/infra/member/GloginProc" */
+		 data: {personFields:'birthdays', key:'AIzaSyBQ6fIJWYm4rSJSs_HGbegC-225Sg2m2Qc', 'access_token': access_token}
+		, method:'GET'
+	})
+	.done(function(e){
+        //프로필을 가져온다.
+     
+		 var profile = googleUser.getBasicProfile();
+		/* console.log(profile); */
+		var id= profile.getId();
+		var username = profile.getName();
+		
+		console.log(username);
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: "/infra/member/GloginProc"
+			,data : {"ifmmName" : profile.getName()}
+			,success: function(response) {
+				if(response.rt == "success") {
+					location.href = "/infra/index/indexView";
+				} else {
+					alert("구글 로그인 실패");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		})
+		
+	})
+	.fail(function(e){
+		console.log(e);
+	})
+	
+}
+
+function onSignInFailure(t){	
+	
+	console.log(t);
+	
+}
+
+</script>
+
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
     </body>
 </html>

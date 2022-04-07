@@ -10,6 +10,8 @@
 		<choose>
 			<when test="shIfmmDelNy == 1">AND a.ifmmDelNy = 1</when>
 			<when test="shIfmmDelNy == 0">AND a.ifmmDelNy = 0</when>
+			<when test="shIfmmDelNy == 2">AND a.ifmmDelNy = 0</when>
+			<when test="shIfmmDelNy == null">AND a.ifmmDelNy = 0</when>
 		</choose>
 		
 				 <choose>
@@ -39,7 +41,7 @@
 				,a.regDateTime
 				from
 				infrMember a
-			left join infrmemberphone b on b.ifmmseq=a.ifmmseq and b.ifmpDefaultNy = 1
+			left join infrmemberphone b on b.ifmmseq=a.ifmmseq and b.ifmpDefaultNy = 1 and b.ifmpDeviceCd= 26
 			left join infrmemberEmail c on c.ifmmseq=a.ifmmseq and c.ifmeDefaultNy = 1
 		
 			left join infrmembernationalty e on e.ifmmseq=a.ifmmseq  and ifmnDefaultNy=1
@@ -200,6 +202,26 @@
 	
 	</insert>
 	
+	<insert id= "insertJoinqna">
+		
+			insert into infrMemberJoinqna(
+			
+			ifjqQuestionCd
+			,ifjqAnswer 
+			,ifjqDelNy
+			,ifmmSeq
+			
+		) values (
+		
+			#{ifjqQuestionCd}
+			,#{ifjqAnswer}
+			,0
+			,#{ifmmSeq}
+			
+		)
+	
+	</insert>
+	
 	<select id="selectOneCount" resultType="Integer">
 	select
 		count(*)
@@ -231,15 +253,18 @@
 				,c.ifmeEmailFull
 				,a.ifmmPassword
 				,d.ifmaAddressFull
+				,d.ifmaAddress1
+				,d.ifmaAddress2
                 ,e.ifnaName
 				,(select ifcdName from infrcode where ifmmGenderCd=ifcdseq) as ifmmGender
-				,concat(substring(a.ifmmDob,1,4),"년", substring(a.ifmmDob,5,3), "월" ,substring(a.ifmmDob,8,3),"일") as ifmmDob
-			
+				,concat(substring(a.ifmmDob,1,4), substring(a.ifmmDob,5,3),substring(a.ifmmDob,8,3)) as ifmmDob
+				
                 ,(select ifcdName from infrCode where ifcdSeq= i.ifjqQuestionCd) as ifjqQuestionName
 				,i.ifjqAnswer
 				,a.ifmmSmsConsentNy
 				,a.ifmmEmailConsentNy
 				,a.ifmmPushConsentNy
+				
 				
 				from
 				infrMember a
@@ -268,21 +293,26 @@
 	
 	<update id="updateMember">
 	update 
-		infrmember a, infrMemberEmail b, infrmembernationalty c
+		infrmember a, infrMemberEmail b, infrmembernationalty c, infrmemberPhone d , infrMemberJoinqna e
 	set 
 				
 				 a.ifmmName = #{ifmmName}
 				, a.ifmmId = #{ifmmId}
-				<!--,a.ifmmDob = #{ifmmDob}-->
-				<!--,a.ifmmGenderCd=#{ifmmGenderCd}
-				,c.ifnaSeq=#{ifnaSeq}-->
+				,a.ifmmDob = #{ifmmDob} 
+				,a.ifmmGenderCd=#{ifmmGenderCd}
+				,c.ifnaSeq=#{ifnaSeq}
+				,d.ifmpNumber=#{ifmpPhone}
+				,d.ifmpTypeCd = 26
 				,b.ifmeEmailFull = #{ifmeEmailFull}
-				
+				,e.ifjqQuestionCd = #{ifjqQuestionCd}
+				,e.ifjqAnswer = #{ifjqAnswer} 
 			       
 	where 
 		a.ifmmSeq= #{ifmmSeq} 
 		and b.ifmmSeq=#{ifmmSeq}  
-		
+		and c.ifmmSeq=#{ifmmSeq}
+		and d.ifmmSeq=#{ifmmSeq}
+		and e.ifmmSeq=#{ifmmSeq}
 	
 	</update>
 	
@@ -325,17 +355,24 @@
 	
 	</select>
 	
+	<select id="selectIdCheck" resultType="Integer">
+	
+	select count(*) from infrmember where ifmmid=#{ifmmId}
+	
+	</select>
 	
 	
-	<!--<insert id="insertBookInfo">
+	
+	<insert id="insertBookInfo">
 			insert into prjBookInfo(
+			prjTitle
+				
+			,prjOriginalTitle
+			,prjPrice
+			,prjBookIntroduce
+			,prjPublisher
+			,prjBookCategoryCd
 			
-			ifmaAddress1
-			,ifmaAddress2
-			,ifmaAddressFull
-			,ifmaDelNy
-			,ifmmSeq
-			,ifmaDefaultNy
 		) values (
 			#{ifmaAddress1}
 			,#{ifmaAddress2}
@@ -345,6 +382,6 @@
 			,1
 		)
 	
-	</insert>-->
+	</insert>
 	
 </mapper>

@@ -6,4 +6,5 @@ public class Constants {
 	public static final int DATE_INTERVAL = -7;
 	
 	public static final String URL_LOGINFORM = "/infra/member/loginForm";
+	public static final String TIME_FORMAT_BASIC = "HH:mm:ss";
 }

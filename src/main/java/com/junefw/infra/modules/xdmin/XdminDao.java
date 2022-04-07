@@ -24,11 +24,19 @@ public class XdminDao {
 	public List<Xdmin> selectList(XdminVo vo) {
 		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
-	// insert
+	
 	public Xdmin selectOne(XdminVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
+	public int selectOneCount(XdminVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+	}
+	public int selectIdCheck(XdminVo vo) {
+		return sqlSession.selectOne(namespace + ".selectIdCheck", vo);
+	}
 	
+	
+	// insert
 	public int insert(Xdmin dto) {
 		System.out.println(dto.getIfmeEmailFull());
 		return sqlSession.insert(namespace + ".insert", dto);
@@ -56,7 +64,11 @@ public class XdminDao {
 		return sqlSession.insert(namespace+".insertFax",dto);
 	}
 	
-
+	public int insertJoinqna(Xdmin dto) {
+		return sqlSession.insert(namespace+".insertJoinqna",dto);
+	}
+	
+	//update and delete(가짜)
 	public int updateMember(Xdmin dto) {
 		return sqlSession.update(namespace+".updateMember",dto);
 	}
@@ -65,9 +77,9 @@ public class XdminDao {
 		return sqlSession.update(namespace+ ".delete", vo);
 	}
 	
-	public int selectOneCount(XdminVo vo) {
-		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
-	}
+
+	
+	
 	
 	//book
 	

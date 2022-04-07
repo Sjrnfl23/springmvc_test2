@@ -28,6 +28,9 @@ public class Xdmin {
 	private String ifmmNameEng;
 	private String ifmpMobile;
 	private String ifmpFax;
+	private String ifjqQuestionCd;
+	
+	
 	
 	//book
 	private String prjSeq;
@@ -42,6 +45,12 @@ public class Xdmin {
 	
 	
 	
+	public String getIfjqQuestionCd() {
+		return ifjqQuestionCd;
+	}
+	public void setIfjqQuestionCd(String ifjqQuestionCd) {
+		this.ifjqQuestionCd = ifjqQuestionCd;
+	}
 	public String getIfmpMobile() {
 		return ifmpMobile;
 	}

@@ -72,7 +72,7 @@ p {
 	
 	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
 	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>"> --%>
-
+	<input type="hidden" id="ifmmGender" name="ifmmGender" value="<c:out value="${item.ifmmGender}"/>">
 
 
 	<div class="container-fluid">
@@ -112,7 +112,7 @@ p {
 						aria-labelledby="dropdownUser2">
 					
 					
-						<li><a class="dropdown-item" href="#">Sign out</a></li>
+						<li><a class="dropdown-item" id="Logout" href="#">로그아웃</a></li>
 					</ul>
 				</span>
 
@@ -458,5 +458,30 @@ goList = function(seq){
 	$("#formList").submit();
 
 }
+</script>
+
+<script type="text/javascript">
+
+$("#Logout").on("click" , function(){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		,url: "/infra/xdmin/logoutProc"
+		,data : {}
+		,success: function(response) {
+			if(response.rt == "success") {
+				location.href = "/infra/member/loginForm";
+			} else {
+				alert("회원없음");
+			}
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+		
+	});
+	
+});
 </script>
 </html>

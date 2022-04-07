@@ -13,7 +13,7 @@ public class CheckLoginSessionInterception extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		if (request.getSession().getAttribute("sessSeq") != null) {
+		if (request.getSession().getAttribute("sessName") != null) {
 			// by pass
 		} else {
 			System.out.println("비정상적인 접근");

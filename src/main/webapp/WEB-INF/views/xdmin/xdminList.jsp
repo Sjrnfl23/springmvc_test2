@@ -75,12 +75,12 @@ text-decoration:none;
 			
 			
 				<div style="float:right;" >
-					<select class="form-select" aria-label="Default select example">
+					<!-- <select class="form-select" aria-label="Default select example">
 						<option selected>언어</option>
 						<option value="1">One</option>
 						<option value="2">Two</option>
 						<option value="3">Three</option>
-					</select>
+					</select> -->
 				
 		
    		
@@ -100,7 +100,7 @@ text-decoration:none;
 						aria-labelledby="dropdownUser2">
 					
 					
-						<li><a class="dropdown-item" href="#">로그아웃</a></li>
+						<li><a class="dropdown-item" id="Logout" href="#">로그아웃</a></li>
 					</ul>
 				</span>
 
@@ -126,12 +126,12 @@ text-decoration:none;
 						aria-current="page" href="/infra/xdmin/xdminList">관리 페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="/infra/xdmin/xdminList" style="margin-left:10px;">회원 페이지</a>
 					</li>
-				<!-- 	<li class="nav-item"><a class="nav-link" href="/infra/book/bookList" style="margin-left:10px;">책 리스트</a>
-					</li> -->
+				 	<li class="nav-item"><a class="nav-link" href="/infra/book/bookList" style="margin-left:10px;">책 리스트</a>
+					</li> 
 					<!-- <li class="nav-item"><a class="nav-link" href="/infra/book/bookRegister" style="margin-left:10px;">책 등록</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="/infra/book/bookPayment" style="margin-left:10px;">결제 페이지</a>
-					</li> -->
+					</li>  -->
 				</ul>
 
 			</div>
@@ -146,6 +146,7 @@ text-decoration:none;
 	<input type="hidden" name="checkboxSeqArray">
 	
 	
+	
 	<%-- <input type="hidden" id="shIfcgDelNy" name="shIfcgDelNy" value="<c:out value="${vo.shIfcgDelNy}"/>"> --%>
 
 <%-- 	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
@@ -157,7 +158,7 @@ text-decoration:none;
 			<div class="row">
 				<div class="col-md-2 col-6">
 					<select class="form-select" aria-label="Default select example" id="shIfmmDelNy" name="shIfmmDelNy">
-						<option value="0" selected>::삭제여부::</option>
+							<option value="2" selected>::삭제구분::
 							<option value="1" <c:if test="${vo.shIfmmDelNy eq 1 }">selected</c:if>>Y
 							<option value="0" <c:if test="${vo.shIfmmDelNy eq 0 }">selected</c:if>>N
 						
@@ -187,7 +188,7 @@ text-decoration:none;
 			<div class="row">
 				<div class="col-md-2 col-6">
 					<select class="form-select" id="shOption" name="shOption"aria-label="Default select example">
-						<option value="1" selected>검색구분</option>
+						<option value="0" selected>검색구분</option>
 						<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>이름</option>
 						<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>ID</option>
 						<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>국적</option>
@@ -200,14 +201,16 @@ text-decoration:none;
 
 				</div>
 				<div style="margin:3px;" class="col">
-					<input type="submit" style="padding: 5px;" class="btn btn-warning " id="delete"
-						name="delete" value="검색">
+				
+					<input type="submit" style="padding: 5px;" class="btn btn-warning " id="btnSearch"
+						name="btnSearch" value="검색">
 						
 					
-					<button style="margin:3px ;padding: 5px;" class="btn btn-danger " id="delete"
-						name="delete">초기화
+					 <button style="margin:3px ;padding: 5px;" class="btn btn-danger " id="btnReturn"
+						name="btnReturn">초기화
 						
-					</button>
+					</button> 
+					
 				</div>
 
 			</div>
@@ -280,12 +283,12 @@ text-decoration:none;
 				<td><c:out value="${item.ifmmDob}"/></td>
 				<td><c:out value="${item.ifnaName}"/></td>
 				<td>
-				 <%-- <c:out value="${item.ifmmGender}"/>  --%>
-		 <c:forEach items="${listCodeGender}" var="itemGender" varStatus="statusGender">
+				  <c:out value="${item.ifmmGender}"/> 
+		 <%-- <c:forEach items="${listCodeGender}" var="itemGender" varStatus="statusGender">
 			
 			<c:if test="${item.ifmmGenderCd eq itemGender.ifcdSeq}"><c:out value="${itemGender.ifcdName}"/></c:if>
 			
-		</c:forEach> 
+		</c:forEach>  --%>
 						
 				</td>
 				
@@ -387,11 +390,11 @@ text-decoration:none;
 				
 				등록
 			</a>
-			<a style="float: right; padding: 5px;" class="btn btn-danger "
-				id="btnModalDelete" name="btnModalDelete" href="#">
+			<input type="submit" style="float: right; padding: 5px;" class="btn btn-danger "
+				id="btnModalDelete" name="btnModalDelete" value="삭제">
 				
-				삭제
-			</a>
+				
+			
 
 			<a style="float: right; padding: 5px; margin-right: 5px;"
 				class="btn btn-success" id="edit" href="#">
@@ -402,8 +405,9 @@ text-decoration:none;
 		</div>
 		<br>
 		<br> <br> <br>
-		<div style="background-color: #F8F9FA; margin: 10px; height: 200px; "
+		<div style="background-color: #F8F9FA; margin: 10px; height: 200px;"
 			class="text">
+			
 			<div>
 			<br>
 			<br>
@@ -489,7 +493,7 @@ $("#btnModalDelete").on("click",function(){
 						
 	/* $("#formList").attr("action", "infra/xdmin/userLisrDele?ifmmSeq=<c:out value="${item.ifmmSeq}"/>").submit(); */
 	/* $("#formList").attr("action",goUrlMultiDele); */
-	$("#formList").attr("action","/infra/xdmin/userListDele");
+	$("#formList").attr("action" , "/infra/xdmin/userListDele");
 });
 
 /* $("#btnCheck").on("click" , function(){
@@ -514,8 +518,51 @@ $("#btnModalDelete").on("click",function(){
 	
 }); */
 
-</script>
+$("#btnReturn").on("click",function(){
+	
+	
+	$("#shValue").val("");  
+	return true;
+	/* $(location).attr("href", "/infra/xdmin/xdminList"); */
+	
+	
 
+	
+});
+
+$("#btnSearch").on("click",function(){
+	if($("#shOption").val() == 0){
+		alert("검색구분을 선택해주세요");
+		return false;
+	}
+	
+});
+
+</script>
+<script type="text/javascript">
+
+$("#Logout").on("click" , function(){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		,url: "/infra/xdmin/logoutProc"
+		,data : {}
+		,success: function(response) {
+			if(response.rt == "success") {
+				location.href = "/infra/member/loginForm";
+			} else {
+				alert("회원없음");
+			}
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+		
+	});
+	
+});
+</script>
 
 	
 </body>

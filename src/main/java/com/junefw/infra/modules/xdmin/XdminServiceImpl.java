@@ -24,8 +24,10 @@ public class XdminServiceImpl implements XdminService{
 		dao.insertCountry(dto);
 	
 		dao.insertMobile(dto);
-		dao.insertPhone(dto);
-		dao.insertFax(dto);
+		dao.insertJoinqna(dto);
+		/*
+		 * dao.insertPhone(dto); dao.insertFax(dto);
+		 */
 		return 1;
 	}
 	public Xdmin selectOne(XdminVo vo) throws Exception{
@@ -36,6 +38,11 @@ public class XdminServiceImpl implements XdminService{
 	}
 	public int delete(XdminVo vo) throws Exception{
 		return dao.delete(vo);
+	}
+	
+	public int selectIdCheck(XdminVo vo) {
+		// TODO Auto-generated method stub
+		return dao.selectIdCheck(vo);
 	}
 	
 	

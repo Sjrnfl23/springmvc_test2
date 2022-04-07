@@ -289,7 +289,7 @@ label {
 	<br>
 	
 	
-	<button style="float:right;" class="btn btn-primary">등록</button>
+	<input type="submit" style="float:right;" class="btn btn-primary" value="등록">
 	
 	
 	</div>

@@ -49,7 +49,7 @@ p {
 	margin-top: 5px;
 	padding:3px;
 }
-
+.ui-datepicker{ z-index: 9999 !important;}
 @media screen and (max-width: 576px) {
 	.table-responsive-sm {
 		width: 100%;
@@ -57,7 +57,7 @@ p {
 }
 </style>
 <link href="/infra/resources/css/sidebars.css" rel="stylesheet" type="text/css">
-
+<link href="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet">
 <title>회원 관리 페이지</title>
 <!-- margin 오른쪽,회원 리스트 td창 작게(컨텐츠에 알맞게)-->
 </head>
@@ -104,7 +104,7 @@ p {
 						aria-labelledby="dropdownUser2">
 					
 					
-						<li><a class="dropdown-item" href="#">Sign out</a></li>
+						<li><a class="dropdown-item" id="Logout" href="#">로그아웃</a></li>
 					</ul>
 				</span>
 
@@ -234,7 +234,10 @@ p {
 				</div>
 				<div class="col-9">
 				
-				<p><input type="text"  class="form-control" value="<c:out value="${item.ifmmDob}"/>"></p>
+				<p>
+				
+				<%-- <input type="date"  class="form-control" id="ifmmDob" name="ifmmDob" value="<c:out value="${item.ifmmDob}"/>"></p> --%>
+				<input type="text" id ="abcDate" name="ifmmDob" autocomplete="off" value="<c:out value="${item.ifmmDob}"/>">
 				
 				</div>
 
@@ -245,7 +248,13 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><input type="text"  class="form-control" value="<c:out value="${item.ifmmGender}"/>"></p>
+				 
+				<select class="form-select" id="ifmmGenderCd" name="ifmmGenderCd" aria-label="gender">
+						
+						<option value="5" <c:if test="${item.ifmmGender eq '남성'}">selected</c:if> >남성</option>
+						<option value="4" <c:if test="${item.ifmmGender eq '여성'}">selected</c:if> >여성</option>
+						<option value="6" <c:if test="${item.ifmmGender eq '기타'}">selected</c:if> >기타</option>
+					</select>
 				</div>
 
 			</div>
@@ -256,7 +265,12 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><input type="text"  class="form-control" value="<c:out value="${item.ifnaName}"/>"></p>
+				<select class="form-select" id="ifnaSeq" name="ifnaSeq" aria-label="gender">
+						
+						<option value="3"<c:if test="${item.ifnaName eq '대한민국'}">selected</c:if>>대한민국</option>
+						<option value="2" <c:if test="${item.ifnaName eq '미국'}">selected</c:if> >미국</option>
+						<option value="4" <c:if test="${item.ifnaName eq '일본'}">selected</c:if>>일본</option>
+					</select>
 				</div>
 
 			</div>
@@ -266,7 +280,24 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><input type="text"  class="form-control" value="<c:out value="${item.ifmaAddressFull}"/>"></p>
+				 <div class="input-group mb-3">
+		 
+        
+        <input 
+               type="text" class="form-control" id="ifmaAddress1" name="ifmaAddress1" placeholder="주소" value="<c:out value="${item.ifmaAddress1}"/>">
+        <div class="input-group-append">
+            <button onClick="sample4_execDaumPostcode()" class="btn btn-outline-secondary" type="button">주소검색</button>
+            
+            
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+        <input  type="text" class="form-control" placeholder="상세주소" id="ifmaAddress2" name="ifmaAddress2" value="<c:out value="${item.ifmaAddress2}"/>" >
+    </div>
+				
+				<%-- <p><input type="text"  class="form-control" value="<c:out value="${item.ifmaAddress1}"/>"></p>
+				<p><input type="text"  class="form-control" value="<c:out value="${item.ifmaAddress2}"/>"></p> --%>
 				</div>
 
 			</div>
@@ -277,7 +308,14 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><input type="text"  class="form-control" value="<c:out value="${item.ifmpPhone}"/>"></p>
+				<div class="input-group mb-3">
+					<select id="ifmpTelcomCd">
+			<option value="30">KT
+			<option value="29">SKT
+			<option value="31">LGU+
+				</select>
+				<input type="text"  class="form-control" name="ifmpPhone" id="ifmpPhone" value="<c:out value="${item.ifmpPhone}"/>">
+				</div>
 				</div>
 
 			</div>
@@ -299,7 +337,13 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><input type="text"  class="form-control" value="<c:out value="${item.ifjqQuestionName}"/>"></p>
+				<select class="form-select form-select-lg mb-3" id="ifjqQuestionCd" name="ifjqQuestionCd">
+  		<option selected> ::비밀번호 문제 선택::</option>
+  		<option value="48"<c:if test="${item.ifjqQuestionCd eq 48}">selected</c:if> >나만의 추억의 장소는?</option>
+  		<option value="49"<c:if test="${item.ifjqQuestionCd eq 49}">selected</c:if>>내가 나온 초등학교의 이름은?</option>
+  		
+			</select>
+			
 				</div>
 
 			</div>
@@ -310,7 +354,7 @@ p {
 				</div>
 				
 				<div class="col-9">
-				<p><input type="text"  class="form-control" value="<c:out value="${item.ifjqAnswer}"/>"></p>
+				<p><input type="text"  class="form-control"  name="ifjqAnswer" value="<c:out value="${item.ifjqAnswer}"/>"></p>
 				</div>
 
 			</div>
@@ -375,7 +419,7 @@ p {
 				
 				취소
 			</a>
-			<input type="submit" style="float: right; padding: 5px; " class="btn btn-warning"
+			<input type="submit" style="float: right; padding: 5px; " class="btn btn-warning" 
 				id="edit" value="수정">
 				
 				
@@ -438,5 +482,111 @@ goView = function(seq){
 	$("#formList").submit();
 
 }
+</script>
+
+<script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+
+
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+    function sample4_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+               
+                document.getElementById("ifmaAddress1").value = roadAddr;
+                
+                
+                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+              
+
+              /*   
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+
+                } else if(data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                } */
+            }
+        }).open();
+    }
+</script>
+
+<script type="text/javascript"> //jquery 달력
+ 
+	$(document).ready(function(){
+		 $("#abcDate").datepicker();
+	}); 
+
+	$.datepicker.setDefaults({
+		
+	    dateFormat: 'yy-mm-dd',
+	    prevText: '이전 달',
+	    nextText: '다음 달',
+	    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	    showMonthAfterYear: true,
+	    yearSuffix: '년',
+	    
+	});
+</script>
+
+<script type="text/javascript">
+
+$("#Logout").on("click" , function(){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		,url: "/infra/xdmin/logoutProc"
+		,data : {}
+		,success: function(response) {
+			if(response.rt == "success") {
+				location.href = "/infra/member/loginForm";
+			} else {
+				alert("회원없음");
+			}
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+		
+	});
+	
+});
 </script>
 </html>

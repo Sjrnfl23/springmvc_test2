@@ -445,6 +445,10 @@ $("#btnSubmit").on("click",function(){
 	if(!checkPasswordSame($("#ifmmPassword"),$("#ifmmPassword").val(),"비밀번호가 서로 다릅니다"))
 	
 });	
+ 
+if(!checkPasswordSame($("#ifmmPassword"), $("#ifmmPassword").val(), $("#pwd_check").val(), "비밀번호가 서로 다릅니다")){
+	return false;
+} 
 
 </script>
 

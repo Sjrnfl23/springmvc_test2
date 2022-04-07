@@ -1,15 +1,21 @@
 package com.junefw.infra.modules.xdmin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.infra.modules.common.*;
+import com.junefw.infra.modules.member.Member;
 
 @Controller
 public class XdiminController {
@@ -37,6 +43,7 @@ public class XdiminController {
 		
 
 		
+		
 		/*
 		 * vo.setShOptionDate(vo.getShOptionDate() == null ? "1" :
 		 * vo.getShOptionDate()); vo.setShDateStart(vo.getShDateStart() == null ?
@@ -44,7 +51,16 @@ public class XdiminController {
 		 * DATE_INTERVAL) : vo.getShDateStart()); vo.setShDateEnd(vo.getShDateEnd() ==
 		 * null ? UtilDateTime.nowString() : vo.getShDateEnd());
 		 */
-		
+		 
+		/* 최신 버전
+		 * vo.setShOptionDate(vo.getShOptionDate() == null ? "1" :
+		 * vo.getShOptionDate()); vo.setShDateStart(vo.getShDateStart() == null ?
+		 * UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(),
+		 * Constants.DATE_INTERVAL) :
+		 * UtilDateTime.add00TimeString(vo.getShDateStart()));
+		 * vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() :
+		 * UtilDateTime.addNowTimeString(vo.getShDateEnd()));
+		 */
 		
 		
 		
@@ -56,6 +72,7 @@ public class XdiminController {
 		 * vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() :
 		 * UtilDateTime.addStringTime(vo.getShDateEnd()));
 		 */
+		
 		 
 		
 		 int count = service.selectOneCount(vo);
@@ -93,6 +110,8 @@ public class XdiminController {
 	public String xdminEdit(@ModelAttribute("vo")XdminVo vo, Model model) throws Exception {
 		Xdmin xdmin = service.selectOne(vo);
 		model.addAttribute("item", xdmin);
+		
+		
 
 		return "xdmin/xdminEdit";
 
@@ -118,7 +137,42 @@ public class XdiminController {
 		
 		/* service.delete(vo); */
 
-		return "redriect:/xdmin/xdminList";
+		return "redirect:/xdmin/xdminList";
+	}
+	
+	// ajax
+	
+	@ResponseBody //로그아웃
+	@RequestMapping(value = "/xdmin/logoutProc")
+	public Map<String, Object> logOutProc(Member dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		
+		httpSession.invalidate();
+		
+		returnMap.put("rt", "success");
+		
+		return returnMap;
+		
+		
+	}
+	
+	
+	@ResponseBody //아이디 중복 체크
+	@RequestMapping(value = "/xdmin/idCheck")
+	public Map<String, Object> loginProc(HttpSession httpSession,XdminVo vo) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		
+		
+		int check = service.selectIdCheck(vo);
+		
+		if(check>=1) {
+			returnMap.put("rt", "fail");
+		}else {
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
 	}
 
 	// book

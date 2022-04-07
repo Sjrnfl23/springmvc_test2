@@ -22,6 +22,7 @@ public class XdminVo {
 	private int endRnumForOracle;								// 쿼리 끝 row
 	private Integer RNUM;
 	
+	private String ifmmId;
 	
 	private int startRnumForMysql = 0;
 	
@@ -61,7 +62,7 @@ public class XdminVo {
 			if (startRnumForOracle < 1) startRnumForOracle = 1;
 			
 			
-			if (thisPage == 1) {
+			if (thisPage == 1 || thisPage == 0 ) {
 				startRnumForMysql = 0;
 			} else {
 				startRnumForMysql = ((rowNumToShow * (thisPage-1)));
@@ -80,6 +81,24 @@ public class XdminVo {
 		}
 	 
 	 
+	 
+	 
+	 
+	public String getIfmmId() {
+		return ifmmId;
+	}
+
+
+
+
+
+	public void setIfmmId(String ifmmId) {
+		this.ifmmId = ifmmId;
+	}
+
+
+
+
 
 	public String[] getCheckboxSeqArray() {
 		return CheckboxSeqArray;
@@ -102,24 +121,9 @@ public class XdminVo {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	public String getShDateStart() {
 		return shDateStart;
 	}
-
-
-
-
 
 
 
@@ -129,28 +133,14 @@ public class XdminVo {
 
 
 
-
-
-
-
 	public String getShDateEnd() {
 		return shDateEnd;
 	}
 
 
-
-
-
-
-
 	public void setShDateEnd(String shDateEnd) {
 		this.shDateEnd = shDateEnd;
 	}
-
-
-
-
-
 
 
 	public String getShIfmmDelNy() {
